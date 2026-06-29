@@ -42,7 +42,7 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type">,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   loading?: boolean
   /** When provided, renders as a Next.js Link instead of a <button> */
