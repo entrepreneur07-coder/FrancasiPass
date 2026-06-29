@@ -42,9 +42,7 @@ export default function TestsPage() {
             </div>
             <span className="font-semibold text-lg text-gray-900 dark:text-white">Mock Test Library</span>
           </Link>
-          <Link href="/dashboard">
-            <Button variant="ghost" size="sm">← Dashboard</Button>
-          </Link>
+          <Button href="/dashboard" variant="ghost" size="sm">← Dashboard</Button>
         </div>
       </header>
 
@@ -123,7 +121,7 @@ export default function TestsPage() {
                         </span>
                       ))}
                     </div>
-                    <Button variant="primary" fullWidth size="md">
+                    <Button href={`/tests/${test.id}`} variant="primary" fullWidth size="md">
                       {test.type === "Full" ? "Start Full Exam" : "Start Practice"}
                     </Button>
                   </CardContent>

@@ -48,9 +48,7 @@ export default function ExamsPage() {
             </div>
             <span className="font-semibold text-lg text-gray-900 dark:text-white">Exam Modules</span>
           </Link>
-          <Link href="/dashboard">
-            <Button variant="ghost" size="sm">← Back to Dashboard</Button>
-          </Link>
+          <Button href="/dashboard" variant="ghost" size="sm">← Back to Dashboard</Button>
         </div>
       </header>
 
@@ -117,11 +115,14 @@ export default function ExamsPage() {
                       ))}
                     </div>
 
-                    <Link href={exam.href} className="block w-full">
-                      <Button variant={exam.id === "tcf" ? "primary" : "secondary"} fullWidth size="lg">
-                        Start {exam.name} Practice
-                      </Button>
-                    </Link>
+                    <Button
+                      href={exam.href}
+                      variant={exam.id === "tcf" ? "primary" : "secondary"}
+                      fullWidth
+                      size="lg"
+                    >
+                      Start {exam.name} Practice
+                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>

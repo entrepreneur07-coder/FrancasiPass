@@ -60,12 +60,8 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <div className="hidden md:flex items-center gap-3">
-              <Link href="/login">
-                <Button variant="ghost" size="sm">Log in</Button>
-              </Link>
-              <Link href="/register">
-                <Button variant="primary" size="sm">Get Started</Button>
-              </Link>
+              <Button href="/login" variant="ghost" size="sm">Log in</Button>
+              <Button href="/register" variant="primary" size="sm">Get Started</Button>
             </div>
 
             {/* Mobile menu button */}
@@ -108,12 +104,12 @@ export function Navbar() {
               </Link>
             ))}
             <hr className="border-surface-border dark:border-surface-dark-border" />
-            <Link href="/login" className="block px-3 py-2" onClick={() => setMobileOpen(false)}>
-              <Button variant="ghost" fullWidth>Log in</Button>
-            </Link>
-            <Link href="/register" className="block px-3" onClick={() => setMobileOpen(false)}>
-              <Button variant="primary" fullWidth>Get Started Free</Button>
-            </Link>
+            <div className="px-3 py-2">
+              <Button href="/login" variant="ghost" fullWidth>Log in</Button>
+            </div>
+            <div className="px-3">
+              <Button href="/register" variant="primary" fullWidth>Get Started Free</Button>
+            </div>
           </div>
         </div>
       )}

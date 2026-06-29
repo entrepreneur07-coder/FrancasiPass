@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Button, Badge, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
 
 const plans = [
   {
@@ -143,11 +142,14 @@ export function PricingSection() {
                 </CardContent>
 
                 <CardFooter>
-                  <Link href={plan.name === "Free" ? "/register" : "/register?plan=" + plan.name.toLowerCase()} className="w-full">
-                    <Button variant={plan.variant} fullWidth size="lg">
-                      {plan.cta}
-                    </Button>
-                  </Link>
+                  <Button
+                    href={plan.name === "Free" ? "/register" : "/register?plan=" + plan.name.toLowerCase()}
+                    variant={plan.variant}
+                    fullWidth
+                    size="lg"
+                  >
+                    {plan.cta}
+                  </Button>
                 </CardFooter>
               </Card>
             </motion.div>

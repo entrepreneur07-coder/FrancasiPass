@@ -87,9 +87,7 @@ export default function TutorPage() {
           </Link>
           <div className="flex items-center gap-3">
             <Badge variant="accent" size="sm">⚡ Online</Badge>
-            <Link href="/dashboard">
-              <Button variant="ghost" size="sm">← Dashboard</Button>
-            </Link>
+            <Button href="/dashboard" variant="ghost" size="sm">← Dashboard</Button>
           </div>
         </div>
       </header>
