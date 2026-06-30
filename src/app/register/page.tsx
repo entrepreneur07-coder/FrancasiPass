@@ -1,9 +1,41 @@
 "use client"
 
+import { useState, FormEvent } from "react"
 import { Button } from "@/components/ui"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function RegisterPage() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [target, setTarget] = useState("")
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email, password, targetCLB: target || null }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || "Registration failed")
+      router.push("/dashboard")
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-surface-dark px-4 py-12">
       <div className="w-full max-w-sm">
@@ -23,8 +55,15 @@ export default function RegisterPage() {
           </p>
         </div>
 
+        {/* Error message */}
+        {error && (
+          <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-300">
+            {error}
+          </div>
+        )}
+
         {/* Form */}
-        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -33,7 +72,10 @@ export default function RegisterPage() {
               <input
                 id="firstName"
                 type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="John"
+                required
                 className="w-full h-10 px-3 rounded-lg border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -44,7 +86,10 @@ export default function RegisterPage() {
               <input
                 id="lastName"
                 type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 placeholder="Doe"
+                required
                 className="w-full h-10 px-3 rounded-lg border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -56,7 +101,10 @@ export default function RegisterPage() {
             <input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
+              required
               className="w-full h-10 px-3 rounded-lg border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -67,7 +115,10 @@ export default function RegisterPage() {
             <input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Create a strong password"
+              required
               className="w-full h-10 px-3 rounded-lg border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -77,6 +128,8 @@ export default function RegisterPage() {
             </label>
             <select
               id="target"
+              value={target}
+              onChange={(e) => setTarget(e.target.value)}
               className="w-full h-10 px-3 rounded-lg border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               <option value="">Select your target</option>
@@ -86,7 +139,7 @@ export default function RegisterPage() {
               <option value="10">CLB 10+ (Expert)</option>
             </select>
           </div>
-          <Button type="submit" fullWidth size="lg">
+          <Button type="submit" fullWidth size="lg" loading={loading}>
             Create Free Account
           </Button>
         </form>
