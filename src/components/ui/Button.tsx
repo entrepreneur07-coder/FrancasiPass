@@ -1,9 +1,8 @@
 "use client"
 
-import { forwardRef, type ButtonHTMLAttributes } from "react"
+import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-surface-dark disabled:pointer-events-none disabled:opacity-50",
@@ -53,10 +52,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, fullWidth, loading, children, disabled, href, ...props }, ref) => {
     const classes = cn(buttonVariants({ variant, size, fullWidth, className }))
 
-    // When href is provided, render as a Next.js Link styled like a button
+    // When href is provided, render as a plain <a> tag styled like a button
+    // Using plain <a> instead of Next.js <Link> to avoid hydration issues
     if (href) {
       return (
-        <Link
+        <a
           href={href}
           className={classes}
           onClick={props.onClick as any}
@@ -79,7 +79,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             </svg>
           )}
           {children}
-        </Link>
+        </a>
       )
     }
 

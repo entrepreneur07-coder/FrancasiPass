@@ -73,7 +73,7 @@ export function HeroSection() {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Button>
-            <Button href="#exams" variant="outline" size="xl" className="text-base">
+            <Button href="/exams" variant="outline" size="xl" className="text-base">
               View Mock Exams
             </Button>
           </motion.div>

@@ -17,8 +17,8 @@ export function Navbar() {
   }, [])
 
   const navLinks = [
-    { label: "Mock Exams", href: "#exams" },
-    { label: "AI Tutor", href: "#tutor" },
+    { label: "Mock Exams", href: "/exams" },
+    { label: "AI Tutor", href: "/tutor" },
     { label: "Pricing", href: "#pricing" },
   ]
 
