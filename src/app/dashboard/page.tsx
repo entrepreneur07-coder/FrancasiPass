@@ -4,19 +4,14 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle, Badge } from "@/components/ui"
 import Link from "next/link"
 
-// Mock data — will be replaced with real API calls
+// TODO: Replace with real API calls from Supabase
 const mockStats = {
-  predictedCLB: 7,
-  streak: 12,
-  testsCompleted: 34,
-  studyHours: 28.5,
-  weakAreas: ["Listening", "Speaking"],
-  recentActivity: [
-    { type: "test", name: "TCF Canada — Compréhension orale", score: "B2", date: "2 hours ago" },
-    { type: "test", name: "TEF Canada — Expression écrite", score: "C1", date: "Yesterday" },
-    { type: "lesson", name: "Vocabulary: Immigration Vocabulary", progress: "80%", date: "2 days ago" },
-    { type: "test", name: "TCF Canada — Structures de la langue", score: "B1", date: "3 days ago" },
-  ],
+  predictedCLB: 0,
+  streak: 0,
+  testsCompleted: 0,
+  studyHours: 0,
+  weakAreas: [] as string[],
+  recentActivity: [] as { type: string; name: string; score?: string; progress?: string; date: string }[],
 }
 
 export default function DashboardPage() {
@@ -37,7 +32,7 @@ export default function DashboardPage() {
               CLB {mockStats.predictedCLB} · {mockStats.streak}-day streak
             </div>
             <div className="h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center text-sm font-semibold text-primary-700 dark:text-primary-300">
-              JD
+              FP
             </div>
           </div>
         </div>
@@ -50,11 +45,9 @@ export default function DashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-heading-xl font-bold mb-2">Welcome back, John</h1>
+          <h1 className="text-heading-xl font-bold mb-2">Welcome to FrancaisPass</h1>
           <p className="text-body-sm text-gray-500 dark:text-gray-400">
-            You&apos;re <span className="text-primary-600 dark:text-primary-400 font-semibold">{mockStats.predictedCLB} CLB</span> — just{" "}
-            <span className="font-semibold text-gray-700 dark:text-gray-300">2 more points</span> to unlock{" "}
-            <span className="font-semibold text-accent-600 dark:text-accent-400">50 extra CRS points</span>
+            Start your journey to Canadian immigration success. Take a mock exam or practice with the AI tutor.
           </p>
         </motion.div>
 
@@ -106,10 +99,10 @@ export default function DashboardPage() {
               <CardContent>
                 <div className="space-y-5">
                   {[
-                    { skill: "Reading", level: 7, target: 9, color: "bg-primary-500" },
-                    { skill: "Writing", level: 6, target: 9, color: "bg-accent-500" },
-                    { skill: "Listening", level: 6, target: 9, color: "bg-blue-500" },
-                    { skill: "Speaking", level: 8, target: 9, color: "bg-emerald-500" },
+                    { skill: "Reading", level: 0, target: 9, color: "bg-primary-500" },
+                    { skill: "Writing", level: 0, target: 9, color: "bg-accent-500" },
+                    { skill: "Listening", level: 0, target: 9, color: "bg-blue-500" },
+                    { skill: "Speaking", level: 0, target: 9, color: "bg-emerald-500" },
                   ].map((skill) => (
                     <div key={skill.skill}>
                       <div className="flex items-center justify-between mb-1.5">
@@ -122,15 +115,15 @@ export default function DashboardPage() {
                       <div className="h-2.5 bg-gray-100 dark:bg-surface-dark-muted rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={{ width: `${(skill.level / skill.target) * 100}%` }}
+                          animate={{ width: `${skill.target > 0 ? (skill.level / skill.target) * 100 : 0}%` }}
                           transition={{ duration: 1, delay: 0.5 }}
                           className={`h-full rounded-full ${skill.color}`}
                         />
                       </div>
                       <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                        {skill.level < skill.target
+                        {skill.level > 0
                           ? `${((skill.target - skill.level) / 2) * 10} more CRS points possible`
-                          : "Target reached!"}
+                          : "Take a mock test to establish your baseline"}
                       </p>
                     </div>
                   ))}
@@ -144,7 +137,7 @@ export default function DashboardPage() {
                       <p className="text-xs text-primary-600 dark:text-primary-400">With target CLB 9 in all skills</p>
                     </div>
                     <div className="text-right">
-                      <span className="text-display font-bold text-primary-600 dark:text-primary-400">+67</span>
+                      <span className="text-display font-bold text-primary-600 dark:text-primary-400">0</span>
                       <span className="text-sm text-primary-500 dark:text-primary-500"> points</span>
                     </div>
                   </div>
@@ -169,14 +162,22 @@ export default function DashboardPage() {
                 <CardTitle>Focus Areas</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                {mockStats.weakAreas.map((area) => (
-                  <div key={area} className="flex items-center justify-between p-3 bg-error-light/50 dark:bg-error-dark/20 rounded-lg">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{area}</span>
-                    <Link href={`/exams/tcf`} className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:underline">
-                      Practice →
-                    </Link>
-                  </div>
-                ))}
+                {mockStats.weakAreas.length > 0 ? (
+                  <>
+                    {mockStats.weakAreas.map((area) => (
+                      <div key={area} className="flex items-center justify-between p-3 bg-error-light/50 dark:bg-error-dark/20 rounded-lg">
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{area}</span>
+                        <Link href={`/exams/tcf`} className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:underline">
+                          Practice →
+                        </Link>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-4">
+                    Complete a mock test to identify your focus areas
+                  </p>
+                )}
                 <Link href="/exams" className="block text-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline pt-2">
                   View all exam modules →
                 </Link>
@@ -189,20 +190,28 @@ export default function DashboardPage() {
                 <CardTitle>Recent Activity</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                {mockStats.recentActivity.map((activity, i) => (
-                  <div key={i} className="flex items-start gap-3 pb-3 border-b border-surface-border dark:border-surface-dark-border last:border-0 last:pb-0">
-                    <div className={`mt-0.5 h-2 w-2 rounded-full ${activity.type === "test" ? "bg-primary-500" : "bg-accent-500"}`} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-gray-700 dark:text-gray-300 truncate">{activity.name}</p>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{activity.date}</span>
-                        {"score" in activity && (
-                          <Badge variant="outline" size="sm">{activity.score}</Badge>
-                        )}
+                {mockStats.recentActivity.length > 0 ? (
+                  <>
+                    {mockStats.recentActivity.map((activity, i) => (
+                      <div key={i} className="flex items-start gap-3 pb-3 border-b border-surface-border dark:border-surface-dark-border last:border-0 last:pb-0">
+                        <div className={`mt-0.5 h-2 w-2 rounded-full ${activity.type === "test" ? "bg-primary-500" : "bg-accent-500"}`} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-700 dark:text-gray-300 truncate">{activity.name}</p>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">{activity.date}</span>
+                            {"score" in activity && (
+                              <Badge variant="outline" size="sm">{activity.score}</Badge>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
+                    ))}
+                  </>
+                ) : (
+                  <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-4">
+                    No activity yet. Start a mock test to see your progress here.
+                  </p>
+                )}
                 <Link href="/tests" className="block text-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline pt-2">
                   See all test results →
                 </Link>
@@ -224,7 +233,7 @@ export default function DashboardPage() {
               { title: "TCF Canada", desc: "Full-length mock exam", href: "/exams/tcf", icon: "🇫🇷", color: "from-primary-500 to-primary-600" },
               { title: "TEF Canada", desc: "Comprehension & expression", href: "/exams/tef", icon: "🇫🇷", color: "from-accent-500 to-accent-600" },
               { title: "AI Tutor", desc: "Get instant feedback", href: "/tutor", icon: "🤖", color: "from-purple-500 to-primary-500" },
-              { title: "Vocabulary", desc: "Spaced repetition", href: "#", icon: "📚", color: "from-emerald-500 to-accent-500" },
+              { title: "Vocabulary", desc: "Spaced repetition", href: "/vocabulary", icon: "📚", color: "from-emerald-500 to-accent-500" },
             ].map((item) => (
               <Link key={item.title} href={item.href}>
                 <Card hover className="h-full cursor-pointer">

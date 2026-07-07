@@ -21,9 +21,9 @@ const mockResults: {
   clb: 7,
   module: "listening",
   answers: [
-    { question_id: 1, question: "Audio: Conversation dans un restaurant. Que fait le client ?", user_answer: "Il commande un repas", correct_answer: "Il commande un repas", is_correct: true },
-    { question_id: 2, question: "Audio: Bulletin météo. Quel temps fera-t-il demain ?", user_answer: "Pluvieux", correct_answer: "Ensoleillé", is_correct: false },
-    { question_id: 3, question: "Audio: Entretien d'embauche. Quelle est la qualité principale du candidat ?", user_answer: "Sa flexibilité", correct_answer: "Sa flexibilité", is_correct: true },
+    { question_id: 1, question: "Que fait le client ?", user_answer: "Il commande un repas", correct_answer: "Il commande un repas", is_correct: true },
+    { question_id: 2, question: "Quel temps fera-t-il demain ?", user_answer: "Pluvieux", correct_answer: "Ensoleillé", is_correct: false },
+    { question_id: 3, question: "Quelle est la qualité principale du candidat ?", user_answer: "Sa flexibilité", correct_answer: "Sa flexibilité", is_correct: true },
   ],
   ai_feedback: {
     strengths: ["Good vocabulary range", "Clear pronunciation", "Strong grammatical foundation"],
