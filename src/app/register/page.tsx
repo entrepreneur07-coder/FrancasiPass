@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react"
 import { Button } from "@/components/ui"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -21,13 +22,20 @@ export default function RegisterPage() {
     setError("")
 
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, lastName, email, password, targetCLB: target || null }),
+      const supabase = createClient()
+      const fullName = `${firstName} ${lastName}`.trim()
+      const { error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName,
+            target_clb: target || null,
+          },
+        },
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || "Registration failed")
+
+      if (authError) throw new Error(authError.message)
       router.push("/dashboard")
     } catch (err: any) {
       setError(err.message)
