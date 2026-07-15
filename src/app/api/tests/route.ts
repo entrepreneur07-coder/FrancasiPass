@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const type = searchParams.get('type') // tef or tcf
   const module = searchParams.get('module') // reading, listening, writing, speaking
 
-  const supabase = createClient()
+  const supabase = await createClient()
   let query = supabase.from('mock_tests').select('*')
 
   if (type) query = query.eq('exam_type', type)
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
 // POST would be for adding tests (admin only)
 export async function POST(request: Request) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   // Simplified admin check - in production you'd use a role field or metadata

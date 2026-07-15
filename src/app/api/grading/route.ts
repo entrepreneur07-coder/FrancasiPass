@@ -4,7 +4,7 @@ import { evaluateWriting, evaluateSpeaking } from '@/lib/openai/client'
 
 export async function POST(request: Request) {
   const { type, content, prompt, attempt_id, question_id } = await request.json()
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {

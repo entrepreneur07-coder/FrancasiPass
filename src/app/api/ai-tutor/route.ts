@@ -5,7 +5,7 @@ import { AI_TUTOR_SYSTEM_PROMPT } from '@/lib/openai/prompts'
 
 export async function POST(request: Request) {
   const { messages, conversation_id } = await request.json()
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
