@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import { calculateCLB } from '@/lib/utils/clb'
 import { evaluateWriting, evaluateSpeaking } from '@/lib/openai/client'
+import { transcribeAudioBuffer } from '@/lib/deepgram'
 
 export async function POST(request: Request) {
   const { test_id, answers } = await request.json()
@@ -75,6 +76,7 @@ export async function POST(request: Request) {
 
       let aiFeedback = ''
       let score = 0
+      let transcript = ''
 
       try {
         if (test.module === 'writing') {
@@ -83,10 +85,21 @@ export async function POST(request: Request) {
           aiFeedback = result.feedback
           score = Number(result.overall_clb) || 0
         } else {
-          const evalRes = await evaluateSpeaking(userAnswer, q.question_text)
-          const result = JSON.parse(evalRes.choices[0].message.content || '{}')
-          aiFeedback = result.feedback
-          score = Number(result.overall_clb) || 0
+          // SPEAKING - needs transcription
+          try {
+            // Extract base64 part
+            const base64Data = userAnswer.split(',')[1] || userAnswer
+            const buffer = Buffer.from(base64Data, 'base64')
+            transcript = await transcribeAudioBuffer(buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength))
+            
+            const evalRes = await evaluateSpeaking(transcript, q.question_text)
+            const result = JSON.parse(evalRes.choices[0].message.content || '{}')
+            aiFeedback = result.feedback
+            score = Number(result.overall_clb) || 0
+          } catch (transcribeErr) {
+            console.error('Transcription error:', transcribeErr)
+            aiFeedback = 'Error during transcription or evaluation.'
+          }
         }
       } catch (err) {
         console.error('Grading error:', err)
@@ -96,7 +109,7 @@ export async function POST(request: Request) {
       return {
         attempt_id: attempt.id,
         question_id: q.id,
-        selected_answer: userAnswer,
+        selected_answer: test.module === 'speaking' ? (transcript || 'Audio submitted') : userAnswer,
         ai_feedback: aiFeedback,
         score // temporary field to aggregate
       }
@@ -115,7 +128,9 @@ export async function POST(request: Request) {
   }
 
   // 3. Save answers
-  await supabase.from('user_answers').insert(userAnswers)
+  if (userAnswers.length > 0) {
+    await supabase.from('user_answers').insert(userAnswers)
+  }
 
   // 4. Update attempt
   const clbEquivalent = test.module === 'reading' || test.module === 'listening' 
@@ -143,3 +158,4 @@ export async function POST(request: Request) {
     answers: userAnswers
   })
 }
+

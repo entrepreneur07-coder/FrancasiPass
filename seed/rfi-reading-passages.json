@@ -1,0 +1,1688 @@
+{
+  "meta": {
+    "name": "RFI Reading Comprehension Passages",
+    "description": "TEF/TCF reading comprehension passages for FrancaisPass — sourced from RFI (Radio France Internationale)",
+    "source": "https://www.rfi.fr/fr/rss",
+    "level": "B2-C1",
+    "generatedAt": "2026-07-15T02:03:51.330Z",
+    "totalPassages": 10,
+    "categories": 10
+  },
+  "passages": [
+    {
+      "id": "rfi-politics",
+      "title": "Réforme des institutions : le débat sur la décentralisation relancé",
+      "category": "politics",
+      "topic": "Politique française et canadienne",
+      "passage": "Le débat sur la décentralisation refait surface dans l'hexagone, alors que le gouvernement vient de déposer un projet de loi visant à transférer de nouvelles compétences aux régions. Cette réforme, dont l'ambition affichée est de rapprocher les centres de décision des citoyens, suscite toutefois des réactions contrastées au sein de la classe politique.\n\nSi les partisans de la mesure estiment qu'elle permettrait une gestion plus efficace des politiques publiques, notamment dans les domaines de l'éducation et des transports, ses détracteurs craignent qu'elle n'accentue les inégalités territoriales. « Il serait illusoire de croire que toutes les régions disposent des mêmes capacités financières pour assumer ces nouvelles responsabilités », a déclaré un élu de l'opposition, soulignant qu'il faudrait que l'État garantisse une péréquation équitable avant d'envisager un quelconque transfert de compétences.\n\nLe texte prévoit également la création d'un fonds de solidarité destiné à compenser les disparités économiques entre les territoires. Les débats parlementaires devraient s'étendre sur plusieurs mois, et de nombreux amendements sont attendus de la part des sénateurs qui souhaitent que le rôle des collectivités locales soit renforcé dans la mise en œuvre de cette politique ambitieuse. Les citoyens, quant à eux, attendent des résultats concrets : une enquête récente révèle que 68% des Français se disent favorables à une décentralisation accrue, pourvu qu'elle s'accompagne de moyens financiers à la hauteur des enjeux.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "Un projet de loi sur la décentralisation et ses implications",
+            "Les élections municipales à venir en France",
+            "La réforme du système de santé français",
+            "Les relations entre la France et l'Union européenne"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article traite du projet de loi sur la décentralisation qui vise à transférer des compétences aux régions, ainsi que des réactions contrastées qu'il suscite."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel pourcentage de Français se dit favorable à une décentralisation accrue ?",
+          "options": [
+            "58%",
+            "68%",
+            "78%",
+            "48%"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Le texte mentionne explicitement qu'une enquête récente révèle que 68% des Français se disent favorables à une décentralisation accrue."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire de l'opposition à cette réforme ?",
+          "options": [
+            "Les détracteurs craignent un creusement des inégalités entre régions",
+            "Les opposants refusent toute forme de changement institutionnel",
+            "Les critiques estiment que les régions sont déjà trop puissantes",
+            "L'opposition préfère une centralisation renforcée"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le texte indique que les détracteurs craignent que la réforme n'accentue les inégalités territoriales, car toutes les régions ne disposent pas des mêmes capacités financières."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie le mot « péréquation » dans le contexte de cet article ?",
+          "options": [
+            "Un mécanisme de redistribution visant à réduire les inégalités",
+            "Une augmentation des impôts locaux",
+            "Une procédure de vote parlementaire",
+            "Un système de nomination des fonctionnaires régionaux"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La péréquation désigne un mécanisme de redistribution financière destiné à compenser les disparités économiques entre les territoires, comme le mentionne le texte à propos du fonds de solidarité."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est l'objectif principal de cet article ?",
+          "options": [
+            "Informer sur un projet de loi et les réactions qu'il suscite",
+            "Critiquer ouvertement la politique du gouvernement",
+            "Promouvoir une position politique particulière",
+            "Annoncer les résultats d'une élection"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article adopte un ton neutre et informatif, présentant à la fois les arguments des partisans et des détracteurs de la réforme, sans prendre parti."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/politics",
+      "level": "B2-C1",
+      "wordCount": 222,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-economy",
+      "title": "L'économie française face aux défis de la transition énergétique",
+      "category": "economy",
+      "topic": "Économie et Finance",
+      "passage": "La transition énergétique représente à la fois un défi et une opportunité pour l'économie française. Alors que le gouvernement a fixé l'objectif ambitieux d'atteindre la neutralité carbone d'ici 2050, les entreprises doivent désormais repenser leurs modèles d'affaires pour s'adapter à cette nouvelle donne. Encore faudrait-il que les investissements nécessaires suivent le rythme des ambitions affichées.\n\nSelon un rapport récent de l'Observatoire des investissements verts, les montants alloués aux énergies renouvelables ont augmenté de 35% au cours des deux dernières années, témoignant d'une prise de conscience collective. Néanmoins, certains secteurs industriels, notamment l'automobile et la sidérurgie, peinent à opérer leur mue écologique sans compromettre leur compétitivité sur le marché international. Le président d'un grand groupe industriel a récemment déclaré qu'il serait indispensable que l'Union européenne assouplisse temporairement certaines normes environnementales pour permettre une transition en douceur.\n\nLes économistes s'interrogent sur la capacité de la France à concilier impératifs écologiques et croissance économique. « Il faudrait que les pouvoirs publics accompagnent davantage les PME dans cette transition, car elles représentent le tissu économique le plus vulnérable », souligne une étude de la Banque de France. Les prochaines années seront décisives pour déterminer si cette transformation structurelle portera ses fruits, d'autant que la facture énergétique des ménages continue d'augmenter, ce qui suscite des inquiétudes quant à l'acceptabilité sociale de ces réformes.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le thème central de cet article ?",
+          "options": [
+            "Les défis économiques de la transition énergétique en France",
+            "La fermeture des centrales nucléaires françaises",
+            "Les nouvelles technologies de stockage d'énergie",
+            "La concurrence commerciale entre la France et l'Allemagne"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine comment l'économie française s'adapte à la transition énergétique, en abordant à la fois les opportunités et les difficultés rencontrées."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "De quel pourcentage les investissements dans les énergies renouvelables ont-ils augmenté ?",
+          "options": [
+            "25%",
+            "35%",
+            "45%",
+            "55%"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Le rapport de l'Observatoire des investissements verts mentionne une augmentation de 35% des montants alloués aux énergies renouvelables."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire de la situation des PME dans cet article ?",
+          "options": [
+            "Elles sont particulièrement vulnérables et nécessitent un soutien accru",
+            "Elles sont les principales bénéficiaires de la transition",
+            "Elles ont déjà accompli leur transition écologique",
+            "Elles s'opposent massivement aux réformes environnementales"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'étude de la Banque de France souligne que les PME constituent le tissu économique le plus vulnérable et qu'il faudrait que les pouvoirs publics les accompagnent davantage."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie l'expression « mue écologique » dans le contexte ?",
+          "options": [
+            "La transformation profonde des processus industriels vers plus de durabilité",
+            "Le changement de couleur des bâtiments pour des raisons environnementales",
+            "La migration des entreprises vers des zones rurales",
+            "L'abandon total des activités polluantes du jour au lendemain"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La « mue écologique » fait référence à la transformation nécessaire des secteurs industriels pour adopter des pratiques plus respectueuses de l'environnement."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est le ton général de cet article ?",
+          "options": [
+            "Neutre et informatif, présentant différents points de vue",
+            "Alarmiste et catastrophiste sur l'avenir économique",
+            "Optimiste et enthousiaste quant aux progrès réalisés",
+            "Sarcastique et critique envers les politiques environnementales"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article maintient un ton neutre en présentant à la fois les progrès (augmentation des investissements verts) et les difficultés (vulnérabilité des PME, inquiétudes sociales)."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/economy",
+      "level": "B2-C1",
+      "wordCount": 218,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-environment",
+      "title": "La biodiversité en péril : l'urgence d'agir face à l'effondrement des écosystèmes",
+      "category": "environment",
+      "topic": "Environnement",
+      "passage": "L'érosion de la biodiversité s'accélère à un rythme préoccupant, selon le dernier rapport du Groupe d'experts intergouvernemental sur l'évolution du climat (GIEC). Près d'un million d'espèces animales et végétales seraient menacées d'extinction à court terme, principalement en raison des activités humaines et du dérèglement climatique. Il est impératif que des mesures drastiques soient adoptées sans délai pour inverser cette tendance.\n\nFace à ce constat alarmant, de nombreuses initiatives voient le jour tant au niveau local qu'international. La France a notamment annoncé le lancement d'un programme de restauration écologique portant sur 50 000 hectares de zones humides d'ici 2030. Ces écosystèmes, qui jouent un rôle crucial dans la régulation du climat et la filtration de l'eau, ont vu leur superficie diminuer de 67% au cours du siècle dernier. Il serait regrettable que les efforts ne soient pas à la hauteur de l'urgence.\n\nLes scientifiques insistent sur la nécessité d'adopter une approche systémique. « Il ne suffit pas que nous protégions quelques espèces emblématiques ; il faut que nous préservions l'intégralité des écosystèmes dont dépend notre propre survie », explique une chercheuse du Muséum national d'histoire naturelle. Les décisions politiques prises dans les prochaines années seront déterminantes pour inverser cette tendance. Selon un sondage, 73% des citoyens européens considèrent que la protection de l'environnement devrait être une priorité absolue, ce qui témoigne d'une sensibilisation croissante de l'opinion publique.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "L'urgence de protéger la biodiversité face à l'effondrement des écosystèmes",
+            "Les causes du réchauffement climatique",
+            "Les bienfaits de l'agriculture intensive",
+            "La pollution des océans par les plastiques"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article traite de l'érosion accélérée de la biodiversité et de la nécessité d'agir rapidement pour préserver les écosystèmes."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel est l'objectif du programme de restauration écologique annoncé par la France ?",
+          "options": [
+            "Restaurer 50 000 hectares de zones humides d'ici 2030",
+            "Planter un million d'arbres d'ici 2025",
+            "Réduire les émissions de CO2 de 40% d'ici 2030",
+            "Créer 100 nouvelles réserves naturelles"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le texte mentionne que la France a annoncé un programme de restauration écologique portant sur 50 000 hectares de zones humides d'ici 2030."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire de l'opinion des citoyens européens sur l'environnement ?",
+          "options": [
+            "Une majorité significative considère l'environnement comme une priorité",
+            "Les citoyens européens sont indifférents aux questions environnementales",
+            "Seule une minorité soutient les politiques environnementales",
+            "Les jeunes sont les seuls à se préoccuper de l'environnement"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le sondage mentionné révèle que 73% des citoyens européens considèrent la protection de l'environnement comme une priorité absolue, ce qui constitue une majorité significative."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « approche systémique » dans le contexte de cet article ?",
+          "options": [
+            "Une méthode qui considère l'ensemble des interactions d'un écosystème",
+            "Une classification des espèces par système informatique",
+            "Un système de notation pour évaluer la biodiversité",
+            "Une approche politique centralisée de l'environnement"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'approche systémique consiste à considérer l'écosystème dans son ensemble et les interactions entre ses composantes, plutôt que de se focaliser sur quelques espèces isolées."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est l'objectif de l'auteur en citant la chercheuse du Muséum ?",
+          "options": [
+            "Apporter une crédibilité scientifique à l'argumentation",
+            "Donner une opinion personnelle déguisée",
+            "Présenter une position minoritaire dans le débat",
+            "Critiquer les politiques gouvernementales actuelles"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'auteur cite une experte reconnue pour renforcer son argumentation par une autorité scientifique crédible dans le domaine."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/environment",
+      "level": "B2-C1",
+      "wordCount": 226,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-technology",
+      "title": "L'intelligence artificielle transforme le marché du travail : quelles perspectives ?",
+      "category": "technology",
+      "topic": "Technologie et Sciences",
+      "passage": "L'intelligence artificielle générative bouleverse les codes établis du monde professionnel, suscitant à la fois enthousiasme et inquiétude. Selon une étude prospective du Ministère du Travail, près de 30% des métiers actuels pourraient être profondément transformés par ces technologies d'ici 2030, tandis que de nouvelles professions émergeraient simultanément. Il est essentiel que les travailleurs anticipent ces mutations pour ne pas être pris au dépourvu.\n\nLes secteurs les plus impactés seraient ceux de la traduction, du journalisme, de la programmation informatique et des services juridiques. « L'IA ne remplacera pas les humains, mais il est probable que les professionnels qui sauront exploiter ces outils remplaceront ceux qui les ignorent », affirme un expert en transformation numérique interrogé par nos confrères du Monde. Cette citation illustre bien le paradoxe auquel sont confrontés les travailleurs : il faudrait qu'ils se forment aux nouvelles technologies tout en conservant leur expertise métier.\n\nParallèlement, le gouvernement a annoncé un plan d'investissement de deux milliards d'euros pour former les travailleurs aux compétences numériques de demain. Ce programme ambitieux comprend notamment la création de cinquante campus dédiés à l'intelligence artificielle sur l'ensemble du territoire. Les syndicats restent toutefois vigilants quant aux conditions de mise en œuvre de cette transition technologique, craignant qu'elle ne se traduise par une précarisation accrue de certains emplois. Une enquête récente indique que 62% des salariés français se disent préoccupés par l'impact de l'IA sur leur travail.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "L'impact de l'intelligence artificielle sur le marché du travail",
+            "Les dernières avancées en robotique industrielle",
+            "La création de nouveaux langages de programmation",
+            "Les investissements dans les start-ups technologiques"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine comment l'IA générative transforme les métiers, en présentant à la fois les opportunités et les inquiétudes que cela suscite."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel est le montant du plan d'investissement gouvernemental pour la formation numérique ?",
+          "options": [
+            "Un milliard d'euros",
+            "Deux milliards d'euros",
+            "Trois milliards d'euros",
+            "Cinq cents millions d'euros"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Le texte mentionne un plan d'investissement de deux milliards d'euros pour former les travailleurs aux compétences numériques."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Quelle attitude les syndicats adoptent-ils face à cette transition technologique ?",
+          "options": [
+            "Ils sont vigilants et craignent une précarisation de certains emplois",
+            "Ils s'opposent catégoriquement à toute introduction de l'IA",
+            "Ils soutiennent sans réserve le plan gouvernemental",
+            "Ils sont indifférents aux changements en cours"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Les syndicats restent vigilants et craignent que la transition ne se traduise par une précarisation accrue de certains emplois."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie l'expression « précarisation accrue » dans le contexte ?",
+          "options": [
+            "Une augmentation de l'instabilité et de la vulnérabilité professionnelle",
+            "Une amélioration des conditions de travail",
+            "Une réduction du temps de travail hebdomadaire",
+            "Une augmentation générale des salaires"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La précarisation fait référence à la dégradation des conditions de travail et à l'augmentation de l'instabilité professionnelle."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Pourquoi l'auteur cite-t-il l'expert en transformation numérique ?",
+          "options": [
+            "Pour illustrer le paradoxe auquel sont confrontés les travailleurs",
+            "Pour donner son opinion personnelle de manière indirecte",
+            "Pour contredire les affirmations du gouvernement",
+            "Pour annoncer une nouvelle technologie révolutionnaire"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La citation de l'expert sert à illustrer le paradoxe où les travailleurs doivent se former aux nouvelles technologies tout en conservant leur expertise métier."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/technology",
+      "level": "B2-C1",
+      "wordCount": 232,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-culture",
+      "title": "La culture française à l'ère du numérique : entre tradition et innovation",
+      "category": "culture",
+      "topic": "Culture et Arts",
+      "passage": "Le paysage culturel français connaît une mutation profonde sous l'effet des nouvelles technologies. Si les salles de cinéma et les théâtres ont vu leur fréquentation diminuer de 15% depuis la crise sanitaire, les plateformes numériques enregistrent une croissance exponentielle de leur audience, notamment chez les jeunes générations. Il serait pourtant regrettable que la culture en ligne se substitue entièrement à l'expérience physique du spectacle vivant.\n\nLe ministère de la Culture a récemment dévoilé un plan de soutien à la création artistique doté de 300 millions d'euros, visant à accompagner les acteurs culturels dans leur transition numérique. « Il est impératif que notre patrimoine culturel demeure accessible au plus grand nombre, tout en s'adaptant aux nouveaux usages », a déclaré la ministre lors d'une conférence de presse. Ce plan prévoit notamment la numérisation de 500 000 œuvres issues des collections nationales, dont une large part n'avait jamais été accessible au public.\n\nLes festivals, véritables institutions de la vie culturelle française, réinventent également leur modèle. Le Festival d'Avignon, plus grand rendez-vous de théâtre contemporain d'Europe, propose désormais une programmation hybride alliant représentations physiques et diffusions en ligne. Cette stratégie permet de toucher un public international tout en préservant l'essence même de l'expérience théâtrale. Selon une enquête, 58% des spectateurs estiment que le numérique enrichit leur expérience culturelle sans la remplacer.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "La transformation du secteur culturel à l'ère numérique",
+            "La fermeture des salles de cinéma en France",
+            "L'histoire du Festival d'Avignon",
+            "Le budget du ministère de la Culture"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine comment la culture française s'adapte au numérique, en présentant à la fois les défis et les opportunités de cette mutation."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "De combien la fréquentation des salles de cinéma et théâtres a-t-elle diminué ?",
+          "options": [
+            "5%",
+            "10%",
+            "15%",
+            "20%"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Le texte mentionne une diminution de 15% de la fréquentation des salles de cinéma et des théâtres depuis la crise sanitaire."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire de l'attitude du ministère de la Culture ?",
+          "options": [
+            "Il cherche à concilier accessibilité numérique et préservation du patrimoine",
+            "Il privilégie exclusivement les formes d'art traditionnelles",
+            "Il réduit ses investissements dans le secteur culturel",
+            "Il s'oppose à la numérisation des œuvres d'art"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le plan de soutien de 300 millions d'euros et la déclaration de la ministre montrent une volonté d'adapter le patrimoine culturel aux nouveaux usages numériques."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « programmation hybride » dans le contexte du Festival d'Avignon ?",
+          "options": [
+            "Un mélange de représentations physiques et de diffusions en ligne",
+            "Une sélection d'œuvres mélangeant théâtre et danse",
+            "Un programme organisé en collaboration avec plusieurs pays",
+            "Un calendrier alternant spectacles gratuits et payants"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La programmation hybride du Festival d'Avignon combine des représentations en présentiel et des diffusions en ligne pour toucher un public plus large."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est l'objectif de l'article en mentionnant le sondage sur les spectateurs ?",
+          "options": [
+            "Montrer que le numérique est perçu comme un enrichissement et non un remplacement",
+            "Démontrer que les spectateurs préfèrent le numérique au spectacle vivant",
+            "Prouver que la culture traditionnelle est en voie de disparition",
+            "Illustrer le désintérêt des jeunes pour la culture"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le sondage indique que 58% des spectateurs estiment que le numérique enrichit leur expérience culturelle sans la remplacer, ce qui soutient l'idée d'une complémentarité."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/culture",
+      "level": "B2-C1",
+      "wordCount": 218,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-immigration",
+      "title": "Politique d'immigration au Canada : le français comme vecteur d'intégration",
+      "category": "immigration",
+      "topic": "Immigration et Intégration",
+      "passage": "Le Canada renforce sa politique d'immigration francophone en dehors du Québec, avec l'objectif ambitieux d'atteindre 12% d'immigrants francophones d'ici 2028 dans les provinces et territoires anglophones. Cette stratégie, qui s'inscrit dans le cadre de la Loi sur les langues officielles, vise à contrer le déclin du poids démographique des communautés francophones hors Québec. Il est essentiel que les nouveaux arrivants puissent s'intégrer pleinement dans la société canadienne.\n\n« La maîtrise du français constitue un atout indéniable pour les candidats à l'immigration, leur permettant d'accumuler des points supplémentaires dans le système Entrée express », rappelle une conseillère en immigration basée à Toronto. Les données officielles indiquent que les candidats francophones obtiennent en moyenne des scores plus élevés et que leur dossier est traité plus rapidement. Le gouvernement fédéral souhaite que les provinces collaborent davantage à la mise en œuvre de cette stratégie linguistique.\n\nLes nouveaux arrivants francophones bénéficient par ailleurs de programmes d'accompagnement spécifiques, notamment des services d'établissement et des cours de perfectionnement linguistique. Cependant, des défis persistent, particulièrement en ce qui concerne l'accès à l'emploi dans leur domaine de compétence. Des associations militent pour que les diplômes étrangers soient mieux reconnus et que l'accompagnement vers l'intégration professionnelle soit renforcé. Selon une étude récente, 71% des immigrants francophones trouvent un emploi dans leur domaine dans les deux ans suivant leur arrivée, un chiffre encourageant mais qui pourrait encore être amélioré.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "La politique d'immigration francophone au Canada et ses enjeux",
+            "Les procédures de demande de visa pour le Canada",
+            "La comparaison entre les systèmes d'immigration canadien et américain",
+            "Les difficultés économiques du Québec"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article traite de la stratégie canadienne visant à augmenter l'immigration francophone hors Québec et des mesures d'accompagnement pour les immigrants."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel est l'objectif chiffré concernant les immigrants francophones d'ici 2028 ?",
+          "options": [
+            "8%",
+            "10%",
+            "12%",
+            "15%"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Le Canada vise à atteindre 12% d'immigrants francophones d'ici 2028 dans les provinces et territoires anglophones."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire de l'avantage des candidats francophones dans le système Entrée express ?",
+          "options": [
+            "Le français offre un avantage concret dans le processus de sélection",
+            "Le français n'a aucun impact sur le score des candidats",
+            "Seuls les candidats bilingues sont acceptés",
+            "L'anglais est le seul critère linguistique pris en compte"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le texte indique que les candidats francophones obtiennent des points supplémentaires et que leur dossier est traité plus rapidement, confirmant l'avantage concret du français."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « vecteur d'intégration » dans le titre de l'article ?",
+          "options": [
+            "Un moyen qui facilite et accélère l'intégration dans la société",
+            "Un obstacle qui complique l'installation des immigrants",
+            "Une méthode de transport pour les nouveaux arrivants",
+            "Un document administratif requis pour l'immigration"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Un « vecteur d'intégration » est un élément qui facilite le processus d'intégration des immigrants dans leur nouveau pays."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Pourquoi l'auteur mentionne-t-il le chiffre de 71% d'emploi dans le domaine ?",
+          "options": [
+            "Pour montrer un résultat encourageant tout en suggérant des marges d'amélioration",
+            "Pour prouver que l'intégration professionnelle est un échec",
+            "Pour démontrer que le système actuel est parfait",
+            "Pour critiquer les politiques d'immigration actuelles"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le chiffre de 71% est présenté comme encourageant, mais l'auteur ajoute qu'il « pourrait encore être amélioré », ce qui montre une évaluation nuancée."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/immigration",
+      "level": "B2-C1",
+      "wordCount": 229,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-health",
+      "title": "Système de santé : les défis de la médecine de demain face au vieillissement",
+      "category": "health",
+      "topic": "Santé",
+      "passage": "Le système de santé français, longtemps considéré comme l'un des meilleurs au monde, traverse une période de turbulences sans précédent. La pénurie de personnel soignant, couplée au vieillissement de la population, exerce une pression croissante sur les hôpitaux publics. Selon un rapport du Haut Conseil de la santé publique, la France compterait 3,5 millions de personnes âgées dépendantes en 2030, soit une augmentation de 40% par rapport à 2020. Il est urgent que des mesures structurelles soient adoptées pour faire face à cette situation.\n\nFace à cette situation, les pouvoirs publics misent sur la télémédecine et les innovations technologiques. « Les consultations à distance ont connu une augmentation de 500% depuis 2020, et cette tendance devrait se poursuivre », explique un chercheur en santé numérique. Le gouvernement a alloué une enveloppe de 500 millions d'euros pour moderniser les infrastructures hospitalières et développer les soins à domicile. Il faudrait que ces investissements soient pérennisés pour garantir leur efficacité à long terme.\n\nLes professionnels de santé réclament quant à eux une revalorisation salariale et des conditions de travail plus attractives. « Il serait illusoire de vouloir réformer le système sans investir dans les ressources humaines », prévient un syndicat médical. La question du financement à long terme de la protection sociale demeure au cœur des débats politiques, d'autant que le vieillissement démographique devrait accroître les dépenses de santé de 1,5% par an en moyenne jusqu'en 2040, selon les projections de la Commission des comptes de la sécurité sociale.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "Les défis du système de santé face au vieillissement de la population",
+            "Les nouvelles techniques chirurgicales",
+            "La fabrication de médicaments en France",
+            "La formation des étudiants en médecine"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine les pressions exercées sur le système de santé français par le vieillissement démographique et la pénurie de personnel soignant."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Combien de personnes âgées dépendantes la France comptera-t-elle en 2030 ?",
+          "options": [
+            "2,5 millions",
+            "3 millions",
+            "3,5 millions",
+            "4 millions"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Selon le rapport du Haut Conseil de la santé publique, la France comptera 3,5 millions de personnes âgées dépendantes en 2030."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Quelle est l'attitude des professionnels de santé face aux réformes ?",
+          "options": [
+            "Ils estiment que les réformes doivent s'accompagner d'investissements humains",
+            "Ils refusent toute forme de modernisation du système",
+            "Ils sont satisfaits des conditions de travail actuelles",
+            "Ils préfèrent que les réformes soient reportées"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le syndicat médical prévient qu'il est illusoire de réformer sans investir dans les ressources humaines, ce qui implique une revalorisation salariale et de meilleures conditions de travail."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « revalorisation salariale » dans le contexte ?",
+          "options": [
+            "Une augmentation des salaires et des avantages financiers",
+            "Une diminution des primes et des bonus",
+            "Un gel des salaires pour une durée déterminée",
+            "Un changement de système de paie"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La revalorisation salariale fait référence à l'augmentation des rémunérations, que les professionnels de santé réclament pour rendre le métier plus attractif."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est l'objectif de l'auteur en citant les projections de la Commission des comptes ?",
+          "options": [
+            "Souligner l'ampleur des défis financiers à venir pour la santé",
+            "Annoncer une baisse prochaine des dépenses de santé",
+            "Critiquer la gestion financière des hôpitaux",
+            "Promouvoir un nouveau système d'assurance maladie"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Les projections d'une augmentation annuelle de 1,5% des dépenses de santé jusqu'en 2040 soulignent l'ampleur des défis financiers à long terme."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/health",
+      "level": "B2-C1",
+      "wordCount": 246,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-education",
+      "title": "L'école face aux défis du XXIe siècle : réformer pour mieux former",
+      "category": "education",
+      "topic": "Éducation",
+      "passage": "Le système éducatif français est engagé dans une vaste réforme visant à adapter l'enseignement aux enjeux contemporains. Au cœur de cette transformation, l'accent est mis sur l'apprentissage des langues étrangères, le développement des compétences numériques et l'éducation au développement durable. Il est indispensable que les élèves acquièrent les compétences qui leur permettront de s'épanouir dans un monde en constante évolution.\n\n« Il convient que nos élèves soient préparés à évoluer dans un monde où les frontières professionnelles et géographiques sont de plus en plus poreuses », souligne un rapport de l'OCDE. Les résultats de la France aux évaluations internationales PISA, bien qu'en légère amélioration, demeurent inférieurs à la moyenne des pays comparables. Cette situation a motivé l'introduction de nouvelles méthodes pédagogiques, notamment l'enseignement par projet et l'évaluation par compétences. Il faudrait que les enseignants soient mieux formés à ces nouvelles approches pour qu'elles portent leurs fruits.\n\nLa réforme prévoit également la création de « cités éducatives » dans les quartiers prioritaires, visant à renforcer la coopération entre l'école, les familles et les acteurs locaux. Un budget supplémentaire de 800 millions d'euros a été débloqué pour réduire les effectifs dans les classes et améliorer l'équité territoriale. Le taux de décrochage scolaire, qui touche encore près de 8% des jeunes Français, est jugé préoccupant par les syndicats enseignants. Selon une enquête, 64% des parents estiment que l'école devrait accorder une place plus importante à l'éducation aux médias et à l'information.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "Les réformes du système éducatif français pour l'adapter au XXIe siècle",
+            "Les résultats de la France aux évaluations internationales",
+            "La construction de nouvelles écoles dans les quartiers prioritaires",
+            "Le recrutement des enseignants en France"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article présente les différentes mesures de la réforme éducative visant à adapter l'enseignement aux défis contemporains."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel est le budget supplémentaire débloqué pour la réforme éducative ?",
+          "options": [
+            "500 millions d'euros",
+            "600 millions d'euros",
+            "800 millions d'euros",
+            "1 milliard d'euros"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Le texte mentionne un budget supplémentaire de 800 millions d'euros pour réduire les effectifs dans les classes et améliorer l'équité territoriale."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Que peut-on déduire des résultats de la France aux évaluations PISA ?",
+          "options": [
+            "Ils sont en progrès mais insuffisants par rapport aux pays comparables",
+            "La France est classée première mondialement",
+            "Les résultats sont en baisse constante depuis dix ans",
+            "La France a refusé de participer aux évaluations"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le texte indique que les résultats sont « en légère amélioration » mais « demeurent inférieurs à la moyenne des pays comparables », ce qui suggère des progrès insuffisants."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « équité territoriale » dans le contexte de l'éducation ?",
+          "options": [
+            "Une répartition équitable des moyens éducatifs sur l'ensemble du territoire",
+            "Une division du territoire en zones scolaires égales",
+            "Un système de transport scolaire gratuit pour tous",
+            "Une uniformisation des programmes dans toutes les régions"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'équité territoriale vise à garantir que tous les élèves, quel que soit leur lieu de résidence, bénéficient de moyens éducatifs comparables."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Pourquoi l'auteur mentionne-t-il l'enquête sur les parents concernant l'éducation aux médias ?",
+          "options": [
+            "Pour montrer une demande sociale en faveur de nouvelles compétences éducatives",
+            "Pour démontrer que les parents sont satisfaits du système actuel",
+            "Pour prouver que l'éducation aux médias est déjà bien enseignée",
+            "Pour critiquer l'absence totale de formation des enseignants"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le fait que 64% des parents souhaitent plus d'éducation aux médias illustre une demande sociale qui justifie les orientations de la réforme."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/education",
+      "level": "B2-C1",
+      "wordCount": 238,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-international",
+      "title": "Géopolitique mondiale : l'émergence d'un nouvel ordre international",
+      "category": "international",
+      "topic": "Relations internationales",
+      "passage": "Les relations internationales connaissent actuellement des bouleversements majeurs, marqués par l'affirmation de nouvelles puissances et la remise en cause des équilibres établis depuis la fin de la guerre froide. L'essor économique de la Chine, le retour de la Russie sur la scène diplomatique et l'émergence du G20 comme forum de concertation privilégié redessinent la carte du pouvoir mondial. Il est probable que cette recomposition géopolitique s'accélère dans les années à venir.\n\n« Nous assistons à une transition historique vers un monde multipolaire, où les alliances traditionnelles sont réévaluées », analyse une chercheuse en relations internationales de Sciences Po. Les organisations internationales, notamment l'ONU et l'OMC, peinent à s'adapter à cette nouvelle configuration, ce qui suscite des interrogations sur leur capacité à réguler les conflits et les échanges mondiaux. Il faudrait que ces institutions soient réformées en profondeur pour rester pertinentes.\n\nLa France, forte de son réseau diplomatique et de sa présence au Conseil de sécurité, cherche à maintenir son influence tout en nouant de nouveaux partenariats stratégiques. Le président a récemment plaidé pour une « autonomie stratégique européenne » lors d'un sommet à Bruxelles, appelant les États membres à renforcer leur coopération en matière de défense et de politique étrangère. Selon un sondage réalisé dans six pays européens, 58% des citoyens se déclarent favorables à une politique étrangère commune, bien que les divergences entre États membres restent importantes.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "La recomposition des relations internationales vers un monde multipolaire",
+            "Les conflits armés au Moyen-Orient",
+            "L'histoire de la guerre froide",
+            "Les échanges commerciaux entre l'Europe et l'Asie"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine les bouleversements géopolitiques actuels et l'émergence d'un nouvel ordre international multipolaire."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel est le pourcentage de citoyens européens favorables à une politique étrangère commune ?",
+          "options": [
+            "48%",
+            "52%",
+            "58%",
+            "62%"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Le sondage mentionné révèle que 58% des citoyens européens se déclarent favorables à une politique étrangère commune."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Quelle est la position de la France dans ce nouvel ordre mondial ?",
+          "options": [
+            "Elle cherche à maintenir son influence tout en s'adaptant aux changements",
+            "Elle a perdu toute influence sur la scène internationale",
+            "Elle s'oppose systématiquement à l'émergence de nouvelles puissances",
+            "Elle se retire de toutes les organisations internationales"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le texte indique que la France « cherche à maintenir son influence tout en nouant de nouveaux partenariats stratégiques », ce qui montre une stratégie d'adaptation."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « autonomie stratégique européenne » dans le contexte ?",
+          "options": [
+            "La capacité de l'Europe à agir indépendamment sur la scène internationale",
+            "L'indépendance énergétique totale de l'Europe",
+            "La fermeture des frontières européennes",
+            "Le retrait de l'Europe de l'OTAN"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'autonomie stratégique européenne fait référence à la capacité de l'Union européenne à définir et mener sa propre politique de défense et étrangère."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Pourquoi l'auteur cite-t-il la chercheuse de Sciences Po ?",
+          "options": [
+            "Pour apporter une analyse experte sur la transition vers un monde multipolaire",
+            "Pour donner un avis personnel sous couvert d'expertise",
+            "Pour contredire les affirmations du gouvernement français",
+            "Pour annoncer une nouvelle alliance militaire"
+          ],
+          "correctAnswer": 0,
+          "explanation": "La citation de la chercheuse apporte une crédibilité académique à l'analyse de la transition vers un monde multipolaire."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/international",
+      "level": "B2-C1",
+      "wordCount": 228,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    },
+    {
+      "id": "rfi-society",
+      "title": "Les nouvelles solidarités face à la fragmentation du lien social",
+      "category": "society",
+      "topic": "Société",
+      "passage": "La société française contemporaine est traversée par des tensions qui interrogent la cohésion nationale. Entre individualisme croissant et fragmentation sociale, de nouvelles formes de solidarité émergent pourtant, témoignant d'une capacité de résilience collective. Les associations et les initiatives citoyennes se multiplient, notamment dans les domaines de l'aide alimentaire, du soutien scolaire et de l'accompagnement des personnes isolées. Il est remarquable que l'engagement citoyen se renouvelle malgré un contexte de défiance envers les institutions.\n\n« On observe une véritable renaissance de l'engagement citoyen, particulièrement chez les jeunes générations », explique une sociologue spécialiste des mouvements associatifs. Selon une enquête récente, 62% des 18-35 ans déclarent avoir participé à au moins une action bénévole au cours des douze derniers mois, un chiffre en hausse constante depuis cinq ans. Il serait intéressant que les pouvoirs publics s'appuient davantage sur cet élan pour renforcer les politiques de cohésion sociale.\n\nLes plateformes numériques jouent un rôle catalyseur dans cette recomposition du lien social, en facilitant la mise en relation des volontaires et des personnes dans le besoin. Cependant, des voix s'élèvent pour mettre en garde contre une « ubérisation » de la solidarité qui affaiblirait les services publics. Le débat sur le rôle de l'État et de la société civile dans la protection sociale reste plus que jamais d'actualité. Une enquête d'opinion révèle que 76% des Français estiment que la solidarité est une valeur fondamentale qui devrait être davantage encouragée par les politiques publiques.",
+      "questions": [
+        {
+          "id": 1,
+          "type": "main-idea",
+          "question": "Quel est le sujet principal de cet article ?",
+          "options": [
+            "Les nouvelles formes de solidarité et d'engagement citoyen en France",
+            "La crise économique et ses conséquences sociales",
+            "Les réformes du système de protection sociale",
+            "L'impact des réseaux sociaux sur la santé mentale"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'article examine comment de nouvelles formes de solidarité émergent dans la société française contemporaine, malgré les tensions et la fragmentation sociale."
+        },
+        {
+          "id": 2,
+          "type": "detail",
+          "question": "Quel pourcentage de jeunes de 18-35 ans a participé à une action bénévole ?",
+          "options": [
+            "52%",
+            "58%",
+            "62%",
+            "68%"
+          ],
+          "correctAnswer": 2,
+          "explanation": "Le texte mentionne que 62% des 18-35 ans déclarent avoir participé à au moins une action bénévole au cours des douze derniers mois."
+        },
+        {
+          "id": 3,
+          "type": "inference",
+          "question": "Quelle est l'attitude des jeunes générations vis-à-vis de l'engagement citoyen ?",
+          "options": [
+            "Elles sont de plus en plus engagées, avec une hausse constante du bénévolat",
+            "Elles se désintéressent complètement de l'engagement associatif",
+            "Elles préfèrent les engagements politiques traditionnels",
+            "Elles sont moins engagées que les générations précédentes"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le chiffre de 62% est en hausse constante depuis cinq ans, ce qui témoigne d'un engagement croissant des jeunes générations."
+        },
+        {
+          "id": 4,
+          "type": "vocabulary",
+          "question": "Que signifie « ubérisation de la solidarité » dans le contexte ?",
+          "options": [
+            "La transformation de l'aide sociale en services marchands via des plateformes",
+            "La généralisation des services de livraison à domicile",
+            "La création d'une application de covoiturage solidaire",
+            "La privatisation complète des services d'aide sociale"
+          ],
+          "correctAnswer": 0,
+          "explanation": "L'« ubérisation » de la solidarité fait référence à la crainte que les plateformes numériques transforment l'aide sociale en services marchands, au détriment des services publics traditionnels."
+        },
+        {
+          "id": 5,
+          "type": "purpose",
+          "question": "Quel est l'objectif de l'auteur en mentionnant que 76% des Français valorisent la solidarité ?",
+          "options": [
+            "Souligner le décalage entre les valeurs affirmées et les politiques menées",
+            "Démontrer que la solidarité est une valeur en déclin",
+            "Prouver que les Français sont égoïstes",
+            "Annoncer une nouvelle loi sur la solidarité"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Le fait que 76% des Français considèrent la solidarité comme une valeur fondamentale suggère un décalage entre cette aspiration et les politiques publiques actuelles."
+        }
+      ],
+      "source": "RFI (Radio France Internationale)",
+      "sourceUrl": "https://www.rfi.fr/fr/society",
+      "level": "B2-C1",
+      "wordCount": 239,
+      "date": "2026-07-15T02:03:51.329Z",
+      "metadata": {
+        "examType": [
+          "TEF Canada",
+          "TCF Canada"
+        ],
+        "module": "reading",
+        "difficulty": "advanced",
+        "skills": [
+          "compréhension écrite",
+          "vocabulaire",
+          "inférence",
+          "grammaire avancée"
+        ]
+      }
+    }
+  ],
+  "appFormat": {
+    "description": "Import this into src/app/tests/[id]/page.tsx mockTestData",
+    "testData": {
+      "101": {
+        "name": "RFI — Réforme des institutions : le débat sur la décentralisa",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Le débat sur la décentralisation refait surface dans l'hexagone, alors que le gouvernement vient de déposer un projet de loi visant à transférer de nouvelles compétences aux régions. Cette réforme, dont l'ambition affichée est de rapprocher les centres de décision des citoyens, suscite toutefois des réactions contrastées au sein de la classe politique.\n\nSi les partisans de la mesure estiment qu'elle permettrait une gestion plus efficace des politiques publiques, notamment dans les domaines de l'éducation et des transports, ses détracteurs craignent qu'elle n'accentue les inégalités territoriales. « Il serait illusoire de croire que toutes les régions disposent des mêmes capacités financières pour assumer ces nouvelles responsabilités », a déclaré un élu de l'opposition, soulignant qu'il faudrait que l'État garantisse une péréquation équitable avant d'envisager un quelconque transfert de compétences.\n\nLe texte prévoit également la création d'un fonds de solidarité destiné à compenser les disparités économiques entre les territoires. Les débats parlementaires devraient s'étendre sur plusieurs mois, et de nombreux amendements sont attendus de la part des sénateurs qui souhaitent que le rôle des collectivités locales soit renforcé dans la mise en œuvre de cette politique ambitieuse. Les citoyens, quant à eux, attendent des résultats concrets : une enquête récente révèle que 68% des Français se disent favorables à une décentralisation accrue, pourvu qu'elle s'accompagne de moyens financiers à la hauteur des enjeux.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "Un projet de loi sur la décentralisation et ses implications",
+              "Les élections municipales à venir en France",
+              "La réforme du système de santé français",
+              "Les relations entre la France et l'Union européenne"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article traite du projet de loi sur la décentralisation qui vise à transférer des compétences aux régions, ainsi que des réactions contrastées qu'il suscite."
+          },
+          {
+            "id": 2,
+            "question": "Quel pourcentage de Français se dit favorable à une décentralisation accrue ?",
+            "options": [
+              "58%",
+              "68%",
+              "78%",
+              "48%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 1,
+            "explanation": "Le texte mentionne explicitement qu'une enquête récente révèle que 68% des Français se disent favorables à une décentralisation accrue."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire de l'opposition à cette réforme ?",
+            "options": [
+              "Les détracteurs craignent un creusement des inégalités entre régions",
+              "Les opposants refusent toute forme de changement institutionnel",
+              "Les critiques estiment que les régions sont déjà trop puissantes",
+              "L'opposition préfère une centralisation renforcée"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le texte indique que les détracteurs craignent que la réforme n'accentue les inégalités territoriales, car toutes les régions ne disposent pas des mêmes capacités financières."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie le mot « péréquation » dans le contexte de cet article ?",
+            "options": [
+              "Un mécanisme de redistribution visant à réduire les inégalités",
+              "Une augmentation des impôts locaux",
+              "Une procédure de vote parlementaire",
+              "Un système de nomination des fonctionnaires régionaux"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La péréquation désigne un mécanisme de redistribution financière destiné à compenser les disparités économiques entre les territoires, comme le mentionne le texte à propos du fonds de solidarité."
+          },
+          {
+            "id": 5,
+            "question": "Quel est l'objectif principal de cet article ?",
+            "options": [
+              "Informer sur un projet de loi et les réactions qu'il suscite",
+              "Critiquer ouvertement la politique du gouvernement",
+              "Promouvoir une position politique particulière",
+              "Annoncer les résultats d'une élection"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article adopte un ton neutre et informatif, présentant à la fois les arguments des partisans et des détracteurs de la réforme, sans prendre parti."
+          }
+        ]
+      },
+      "102": {
+        "name": "RFI — L'économie française face aux défis de la transition én",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "La transition énergétique représente à la fois un défi et une opportunité pour l'économie française. Alors que le gouvernement a fixé l'objectif ambitieux d'atteindre la neutralité carbone d'ici 2050, les entreprises doivent désormais repenser leurs modèles d'affaires pour s'adapter à cette nouvelle donne. Encore faudrait-il que les investissements nécessaires suivent le rythme des ambitions affichées.\n\nSelon un rapport récent de l'Observatoire des investissements verts, les montants alloués aux énergies renouvelables ont augmenté de 35% au cours des deux dernières années, témoignant d'une prise de conscience collective. Néanmoins, certains secteurs industriels, notamment l'automobile et la sidérurgie, peinent à opérer leur mue écologique sans compromettre leur compétitivité sur le marché international. Le président d'un grand groupe industriel a récemment déclaré qu'il serait indispensable que l'Union européenne assouplisse temporairement certaines normes environnementales pour permettre une transition en douceur.\n\nLes économistes s'interrogent sur la capacité de la France à concilier impératifs écologiques et croissance économique. « Il faudrait que les pouvoirs publics accompagnent davantage les PME dans cette transition, car elles représentent le tissu économique le plus vulnérable », souligne une étude de la Banque de France. Les prochaines années seront décisives pour déterminer si cette transformation structurelle portera ses fruits, d'autant que la facture énergétique des ménages continue d'augmenter, ce qui suscite des inquiétudes quant à l'acceptabilité sociale de ces réformes.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le thème central de cet article ?",
+            "options": [
+              "Les défis économiques de la transition énergétique en France",
+              "La fermeture des centrales nucléaires françaises",
+              "Les nouvelles technologies de stockage d'énergie",
+              "La concurrence commerciale entre la France et l'Allemagne"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine comment l'économie française s'adapte à la transition énergétique, en abordant à la fois les opportunités et les difficultés rencontrées."
+          },
+          {
+            "id": 2,
+            "question": "De quel pourcentage les investissements dans les énergies renouvelables ont-ils augmenté ?",
+            "options": [
+              "25%",
+              "35%",
+              "45%",
+              "55%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 1,
+            "explanation": "Le rapport de l'Observatoire des investissements verts mentionne une augmentation de 35% des montants alloués aux énergies renouvelables."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire de la situation des PME dans cet article ?",
+            "options": [
+              "Elles sont particulièrement vulnérables et nécessitent un soutien accru",
+              "Elles sont les principales bénéficiaires de la transition",
+              "Elles ont déjà accompli leur transition écologique",
+              "Elles s'opposent massivement aux réformes environnementales"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'étude de la Banque de France souligne que les PME constituent le tissu économique le plus vulnérable et qu'il faudrait que les pouvoirs publics les accompagnent davantage."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie l'expression « mue écologique » dans le contexte ?",
+            "options": [
+              "La transformation profonde des processus industriels vers plus de durabilité",
+              "Le changement de couleur des bâtiments pour des raisons environnementales",
+              "La migration des entreprises vers des zones rurales",
+              "L'abandon total des activités polluantes du jour au lendemain"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La « mue écologique » fait référence à la transformation nécessaire des secteurs industriels pour adopter des pratiques plus respectueuses de l'environnement."
+          },
+          {
+            "id": 5,
+            "question": "Quel est le ton général de cet article ?",
+            "options": [
+              "Neutre et informatif, présentant différents points de vue",
+              "Alarmiste et catastrophiste sur l'avenir économique",
+              "Optimiste et enthousiaste quant aux progrès réalisés",
+              "Sarcastique et critique envers les politiques environnementales"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article maintient un ton neutre en présentant à la fois les progrès (augmentation des investissements verts) et les difficultés (vulnérabilité des PME, inquiétudes sociales)."
+          }
+        ]
+      },
+      "103": {
+        "name": "RFI — La biodiversité en péril : l'urgence d'agir face à l'ef",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "L'érosion de la biodiversité s'accélère à un rythme préoccupant, selon le dernier rapport du Groupe d'experts intergouvernemental sur l'évolution du climat (GIEC). Près d'un million d'espèces animales et végétales seraient menacées d'extinction à court terme, principalement en raison des activités humaines et du dérèglement climatique. Il est impératif que des mesures drastiques soient adoptées sans délai pour inverser cette tendance.\n\nFace à ce constat alarmant, de nombreuses initiatives voient le jour tant au niveau local qu'international. La France a notamment annoncé le lancement d'un programme de restauration écologique portant sur 50 000 hectares de zones humides d'ici 2030. Ces écosystèmes, qui jouent un rôle crucial dans la régulation du climat et la filtration de l'eau, ont vu leur superficie diminuer de 67% au cours du siècle dernier. Il serait regrettable que les efforts ne soient pas à la hauteur de l'urgence.\n\nLes scientifiques insistent sur la nécessité d'adopter une approche systémique. « Il ne suffit pas que nous protégions quelques espèces emblématiques ; il faut que nous préservions l'intégralité des écosystèmes dont dépend notre propre survie », explique une chercheuse du Muséum national d'histoire naturelle. Les décisions politiques prises dans les prochaines années seront déterminantes pour inverser cette tendance. Selon un sondage, 73% des citoyens européens considèrent que la protection de l'environnement devrait être une priorité absolue, ce qui témoigne d'une sensibilisation croissante de l'opinion publique.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "L'urgence de protéger la biodiversité face à l'effondrement des écosystèmes",
+              "Les causes du réchauffement climatique",
+              "Les bienfaits de l'agriculture intensive",
+              "La pollution des océans par les plastiques"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article traite de l'érosion accélérée de la biodiversité et de la nécessité d'agir rapidement pour préserver les écosystèmes."
+          },
+          {
+            "id": 2,
+            "question": "Quel est l'objectif du programme de restauration écologique annoncé par la France ?",
+            "options": [
+              "Restaurer 50 000 hectares de zones humides d'ici 2030",
+              "Planter un million d'arbres d'ici 2025",
+              "Réduire les émissions de CO2 de 40% d'ici 2030",
+              "Créer 100 nouvelles réserves naturelles"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le texte mentionne que la France a annoncé un programme de restauration écologique portant sur 50 000 hectares de zones humides d'ici 2030."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire de l'opinion des citoyens européens sur l'environnement ?",
+            "options": [
+              "Une majorité significative considère l'environnement comme une priorité",
+              "Les citoyens européens sont indifférents aux questions environnementales",
+              "Seule une minorité soutient les politiques environnementales",
+              "Les jeunes sont les seuls à se préoccuper de l'environnement"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le sondage mentionné révèle que 73% des citoyens européens considèrent la protection de l'environnement comme une priorité absolue, ce qui constitue une majorité significative."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « approche systémique » dans le contexte de cet article ?",
+            "options": [
+              "Une méthode qui considère l'ensemble des interactions d'un écosystème",
+              "Une classification des espèces par système informatique",
+              "Un système de notation pour évaluer la biodiversité",
+              "Une approche politique centralisée de l'environnement"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'approche systémique consiste à considérer l'écosystème dans son ensemble et les interactions entre ses composantes, plutôt que de se focaliser sur quelques espèces isolées."
+          },
+          {
+            "id": 5,
+            "question": "Quel est l'objectif de l'auteur en citant la chercheuse du Muséum ?",
+            "options": [
+              "Apporter une crédibilité scientifique à l'argumentation",
+              "Donner une opinion personnelle déguisée",
+              "Présenter une position minoritaire dans le débat",
+              "Critiquer les politiques gouvernementales actuelles"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'auteur cite une experte reconnue pour renforcer son argumentation par une autorité scientifique crédible dans le domaine."
+          }
+        ]
+      },
+      "104": {
+        "name": "RFI — L'intelligence artificielle transforme le marché du tra",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "L'intelligence artificielle générative bouleverse les codes établis du monde professionnel, suscitant à la fois enthousiasme et inquiétude. Selon une étude prospective du Ministère du Travail, près de 30% des métiers actuels pourraient être profondément transformés par ces technologies d'ici 2030, tandis que de nouvelles professions émergeraient simultanément. Il est essentiel que les travailleurs anticipent ces mutations pour ne pas être pris au dépourvu.\n\nLes secteurs les plus impactés seraient ceux de la traduction, du journalisme, de la programmation informatique et des services juridiques. « L'IA ne remplacera pas les humains, mais il est probable que les professionnels qui sauront exploiter ces outils remplaceront ceux qui les ignorent », affirme un expert en transformation numérique interrogé par nos confrères du Monde. Cette citation illustre bien le paradoxe auquel sont confrontés les travailleurs : il faudrait qu'ils se forment aux nouvelles technologies tout en conservant leur expertise métier.\n\nParallèlement, le gouvernement a annoncé un plan d'investissement de deux milliards d'euros pour former les travailleurs aux compétences numériques de demain. Ce programme ambitieux comprend notamment la création de cinquante campus dédiés à l'intelligence artificielle sur l'ensemble du territoire. Les syndicats restent toutefois vigilants quant aux conditions de mise en œuvre de cette transition technologique, craignant qu'elle ne se traduise par une précarisation accrue de certains emplois. Une enquête récente indique que 62% des salariés français se disent préoccupés par l'impact de l'IA sur leur travail.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "L'impact de l'intelligence artificielle sur le marché du travail",
+              "Les dernières avancées en robotique industrielle",
+              "La création de nouveaux langages de programmation",
+              "Les investissements dans les start-ups technologiques"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine comment l'IA générative transforme les métiers, en présentant à la fois les opportunités et les inquiétudes que cela suscite."
+          },
+          {
+            "id": 2,
+            "question": "Quel est le montant du plan d'investissement gouvernemental pour la formation numérique ?",
+            "options": [
+              "Un milliard d'euros",
+              "Deux milliards d'euros",
+              "Trois milliards d'euros",
+              "Cinq cents millions d'euros"
+            ],
+            "type": "mcq",
+            "correctAnswer": 1,
+            "explanation": "Le texte mentionne un plan d'investissement de deux milliards d'euros pour former les travailleurs aux compétences numériques."
+          },
+          {
+            "id": 3,
+            "question": "Quelle attitude les syndicats adoptent-ils face à cette transition technologique ?",
+            "options": [
+              "Ils sont vigilants et craignent une précarisation de certains emplois",
+              "Ils s'opposent catégoriquement à toute introduction de l'IA",
+              "Ils soutiennent sans réserve le plan gouvernemental",
+              "Ils sont indifférents aux changements en cours"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Les syndicats restent vigilants et craignent que la transition ne se traduise par une précarisation accrue de certains emplois."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie l'expression « précarisation accrue » dans le contexte ?",
+            "options": [
+              "Une augmentation de l'instabilité et de la vulnérabilité professionnelle",
+              "Une amélioration des conditions de travail",
+              "Une réduction du temps de travail hebdomadaire",
+              "Une augmentation générale des salaires"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La précarisation fait référence à la dégradation des conditions de travail et à l'augmentation de l'instabilité professionnelle."
+          },
+          {
+            "id": 5,
+            "question": "Pourquoi l'auteur cite-t-il l'expert en transformation numérique ?",
+            "options": [
+              "Pour illustrer le paradoxe auquel sont confrontés les travailleurs",
+              "Pour donner son opinion personnelle de manière indirecte",
+              "Pour contredire les affirmations du gouvernement",
+              "Pour annoncer une nouvelle technologie révolutionnaire"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La citation de l'expert sert à illustrer le paradoxe où les travailleurs doivent se former aux nouvelles technologies tout en conservant leur expertise métier."
+          }
+        ]
+      },
+      "105": {
+        "name": "RFI — La culture française à l'ère du numérique : entre tradi",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Le paysage culturel français connaît une mutation profonde sous l'effet des nouvelles technologies. Si les salles de cinéma et les théâtres ont vu leur fréquentation diminuer de 15% depuis la crise sanitaire, les plateformes numériques enregistrent une croissance exponentielle de leur audience, notamment chez les jeunes générations. Il serait pourtant regrettable que la culture en ligne se substitue entièrement à l'expérience physique du spectacle vivant.\n\nLe ministère de la Culture a récemment dévoilé un plan de soutien à la création artistique doté de 300 millions d'euros, visant à accompagner les acteurs culturels dans leur transition numérique. « Il est impératif que notre patrimoine culturel demeure accessible au plus grand nombre, tout en s'adaptant aux nouveaux usages », a déclaré la ministre lors d'une conférence de presse. Ce plan prévoit notamment la numérisation de 500 000 œuvres issues des collections nationales, dont une large part n'avait jamais été accessible au public.\n\nLes festivals, véritables institutions de la vie culturelle française, réinventent également leur modèle. Le Festival d'Avignon, plus grand rendez-vous de théâtre contemporain d'Europe, propose désormais une programmation hybride alliant représentations physiques et diffusions en ligne. Cette stratégie permet de toucher un public international tout en préservant l'essence même de l'expérience théâtrale. Selon une enquête, 58% des spectateurs estiment que le numérique enrichit leur expérience culturelle sans la remplacer.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "La transformation du secteur culturel à l'ère numérique",
+              "La fermeture des salles de cinéma en France",
+              "L'histoire du Festival d'Avignon",
+              "Le budget du ministère de la Culture"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine comment la culture française s'adapte au numérique, en présentant à la fois les défis et les opportunités de cette mutation."
+          },
+          {
+            "id": 2,
+            "question": "De combien la fréquentation des salles de cinéma et théâtres a-t-elle diminué ?",
+            "options": [
+              "5%",
+              "10%",
+              "15%",
+              "20%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Le texte mentionne une diminution de 15% de la fréquentation des salles de cinéma et des théâtres depuis la crise sanitaire."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire de l'attitude du ministère de la Culture ?",
+            "options": [
+              "Il cherche à concilier accessibilité numérique et préservation du patrimoine",
+              "Il privilégie exclusivement les formes d'art traditionnelles",
+              "Il réduit ses investissements dans le secteur culturel",
+              "Il s'oppose à la numérisation des œuvres d'art"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le plan de soutien de 300 millions d'euros et la déclaration de la ministre montrent une volonté d'adapter le patrimoine culturel aux nouveaux usages numériques."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « programmation hybride » dans le contexte du Festival d'Avignon ?",
+            "options": [
+              "Un mélange de représentations physiques et de diffusions en ligne",
+              "Une sélection d'œuvres mélangeant théâtre et danse",
+              "Un programme organisé en collaboration avec plusieurs pays",
+              "Un calendrier alternant spectacles gratuits et payants"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La programmation hybride du Festival d'Avignon combine des représentations en présentiel et des diffusions en ligne pour toucher un public plus large."
+          },
+          {
+            "id": 5,
+            "question": "Quel est l'objectif de l'article en mentionnant le sondage sur les spectateurs ?",
+            "options": [
+              "Montrer que le numérique est perçu comme un enrichissement et non un remplacement",
+              "Démontrer que les spectateurs préfèrent le numérique au spectacle vivant",
+              "Prouver que la culture traditionnelle est en voie de disparition",
+              "Illustrer le désintérêt des jeunes pour la culture"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le sondage indique que 58% des spectateurs estiment que le numérique enrichit leur expérience culturelle sans la remplacer, ce qui soutient l'idée d'une complémentarité."
+          }
+        ]
+      },
+      "106": {
+        "name": "RFI — Politique d'immigration au Canada : le français comme v",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Le Canada renforce sa politique d'immigration francophone en dehors du Québec, avec l'objectif ambitieux d'atteindre 12% d'immigrants francophones d'ici 2028 dans les provinces et territoires anglophones. Cette stratégie, qui s'inscrit dans le cadre de la Loi sur les langues officielles, vise à contrer le déclin du poids démographique des communautés francophones hors Québec. Il est essentiel que les nouveaux arrivants puissent s'intégrer pleinement dans la société canadienne.\n\n« La maîtrise du français constitue un atout indéniable pour les candidats à l'immigration, leur permettant d'accumuler des points supplémentaires dans le système Entrée express », rappelle une conseillère en immigration basée à Toronto. Les données officielles indiquent que les candidats francophones obtiennent en moyenne des scores plus élevés et que leur dossier est traité plus rapidement. Le gouvernement fédéral souhaite que les provinces collaborent davantage à la mise en œuvre de cette stratégie linguistique.\n\nLes nouveaux arrivants francophones bénéficient par ailleurs de programmes d'accompagnement spécifiques, notamment des services d'établissement et des cours de perfectionnement linguistique. Cependant, des défis persistent, particulièrement en ce qui concerne l'accès à l'emploi dans leur domaine de compétence. Des associations militent pour que les diplômes étrangers soient mieux reconnus et que l'accompagnement vers l'intégration professionnelle soit renforcé. Selon une étude récente, 71% des immigrants francophones trouvent un emploi dans leur domaine dans les deux ans suivant leur arrivée, un chiffre encourageant mais qui pourrait encore être amélioré.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "La politique d'immigration francophone au Canada et ses enjeux",
+              "Les procédures de demande de visa pour le Canada",
+              "La comparaison entre les systèmes d'immigration canadien et américain",
+              "Les difficultés économiques du Québec"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article traite de la stratégie canadienne visant à augmenter l'immigration francophone hors Québec et des mesures d'accompagnement pour les immigrants."
+          },
+          {
+            "id": 2,
+            "question": "Quel est l'objectif chiffré concernant les immigrants francophones d'ici 2028 ?",
+            "options": [
+              "8%",
+              "10%",
+              "12%",
+              "15%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Le Canada vise à atteindre 12% d'immigrants francophones d'ici 2028 dans les provinces et territoires anglophones."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire de l'avantage des candidats francophones dans le système Entrée express ?",
+            "options": [
+              "Le français offre un avantage concret dans le processus de sélection",
+              "Le français n'a aucun impact sur le score des candidats",
+              "Seuls les candidats bilingues sont acceptés",
+              "L'anglais est le seul critère linguistique pris en compte"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le texte indique que les candidats francophones obtiennent des points supplémentaires et que leur dossier est traité plus rapidement, confirmant l'avantage concret du français."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « vecteur d'intégration » dans le titre de l'article ?",
+            "options": [
+              "Un moyen qui facilite et accélère l'intégration dans la société",
+              "Un obstacle qui complique l'installation des immigrants",
+              "Une méthode de transport pour les nouveaux arrivants",
+              "Un document administratif requis pour l'immigration"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Un « vecteur d'intégration » est un élément qui facilite le processus d'intégration des immigrants dans leur nouveau pays."
+          },
+          {
+            "id": 5,
+            "question": "Pourquoi l'auteur mentionne-t-il le chiffre de 71% d'emploi dans le domaine ?",
+            "options": [
+              "Pour montrer un résultat encourageant tout en suggérant des marges d'amélioration",
+              "Pour prouver que l'intégration professionnelle est un échec",
+              "Pour démontrer que le système actuel est parfait",
+              "Pour critiquer les politiques d'immigration actuelles"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le chiffre de 71% est présenté comme encourageant, mais l'auteur ajoute qu'il « pourrait encore être amélioré », ce qui montre une évaluation nuancée."
+          }
+        ]
+      },
+      "107": {
+        "name": "RFI — Système de santé : les défis de la médecine de demain f",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Le système de santé français, longtemps considéré comme l'un des meilleurs au monde, traverse une période de turbulences sans précédent. La pénurie de personnel soignant, couplée au vieillissement de la population, exerce une pression croissante sur les hôpitaux publics. Selon un rapport du Haut Conseil de la santé publique, la France compterait 3,5 millions de personnes âgées dépendantes en 2030, soit une augmentation de 40% par rapport à 2020. Il est urgent que des mesures structurelles soient adoptées pour faire face à cette situation.\n\nFace à cette situation, les pouvoirs publics misent sur la télémédecine et les innovations technologiques. « Les consultations à distance ont connu une augmentation de 500% depuis 2020, et cette tendance devrait se poursuivre », explique un chercheur en santé numérique. Le gouvernement a alloué une enveloppe de 500 millions d'euros pour moderniser les infrastructures hospitalières et développer les soins à domicile. Il faudrait que ces investissements soient pérennisés pour garantir leur efficacité à long terme.\n\nLes professionnels de santé réclament quant à eux une revalorisation salariale et des conditions de travail plus attractives. « Il serait illusoire de vouloir réformer le système sans investir dans les ressources humaines », prévient un syndicat médical. La question du financement à long terme de la protection sociale demeure au cœur des débats politiques, d'autant que le vieillissement démographique devrait accroître les dépenses de santé de 1,5% par an en moyenne jusqu'en 2040, selon les projections de la Commission des comptes de la sécurité sociale.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "Les défis du système de santé face au vieillissement de la population",
+              "Les nouvelles techniques chirurgicales",
+              "La fabrication de médicaments en France",
+              "La formation des étudiants en médecine"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine les pressions exercées sur le système de santé français par le vieillissement démographique et la pénurie de personnel soignant."
+          },
+          {
+            "id": 2,
+            "question": "Combien de personnes âgées dépendantes la France comptera-t-elle en 2030 ?",
+            "options": [
+              "2,5 millions",
+              "3 millions",
+              "3,5 millions",
+              "4 millions"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Selon le rapport du Haut Conseil de la santé publique, la France comptera 3,5 millions de personnes âgées dépendantes en 2030."
+          },
+          {
+            "id": 3,
+            "question": "Quelle est l'attitude des professionnels de santé face aux réformes ?",
+            "options": [
+              "Ils estiment que les réformes doivent s'accompagner d'investissements humains",
+              "Ils refusent toute forme de modernisation du système",
+              "Ils sont satisfaits des conditions de travail actuelles",
+              "Ils préfèrent que les réformes soient reportées"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le syndicat médical prévient qu'il est illusoire de réformer sans investir dans les ressources humaines, ce qui implique une revalorisation salariale et de meilleures conditions de travail."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « revalorisation salariale » dans le contexte ?",
+            "options": [
+              "Une augmentation des salaires et des avantages financiers",
+              "Une diminution des primes et des bonus",
+              "Un gel des salaires pour une durée déterminée",
+              "Un changement de système de paie"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La revalorisation salariale fait référence à l'augmentation des rémunérations, que les professionnels de santé réclament pour rendre le métier plus attractif."
+          },
+          {
+            "id": 5,
+            "question": "Quel est l'objectif de l'auteur en citant les projections de la Commission des comptes ?",
+            "options": [
+              "Souligner l'ampleur des défis financiers à venir pour la santé",
+              "Annoncer une baisse prochaine des dépenses de santé",
+              "Critiquer la gestion financière des hôpitaux",
+              "Promouvoir un nouveau système d'assurance maladie"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Les projections d'une augmentation annuelle de 1,5% des dépenses de santé jusqu'en 2040 soulignent l'ampleur des défis financiers à long terme."
+          }
+        ]
+      },
+      "108": {
+        "name": "RFI — L'école face aux défis du XXIe siècle : réformer pour m",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Le système éducatif français est engagé dans une vaste réforme visant à adapter l'enseignement aux enjeux contemporains. Au cœur de cette transformation, l'accent est mis sur l'apprentissage des langues étrangères, le développement des compétences numériques et l'éducation au développement durable. Il est indispensable que les élèves acquièrent les compétences qui leur permettront de s'épanouir dans un monde en constante évolution.\n\n« Il convient que nos élèves soient préparés à évoluer dans un monde où les frontières professionnelles et géographiques sont de plus en plus poreuses », souligne un rapport de l'OCDE. Les résultats de la France aux évaluations internationales PISA, bien qu'en légère amélioration, demeurent inférieurs à la moyenne des pays comparables. Cette situation a motivé l'introduction de nouvelles méthodes pédagogiques, notamment l'enseignement par projet et l'évaluation par compétences. Il faudrait que les enseignants soient mieux formés à ces nouvelles approches pour qu'elles portent leurs fruits.\n\nLa réforme prévoit également la création de « cités éducatives » dans les quartiers prioritaires, visant à renforcer la coopération entre l'école, les familles et les acteurs locaux. Un budget supplémentaire de 800 millions d'euros a été débloqué pour réduire les effectifs dans les classes et améliorer l'équité territoriale. Le taux de décrochage scolaire, qui touche encore près de 8% des jeunes Français, est jugé préoccupant par les syndicats enseignants. Selon une enquête, 64% des parents estiment que l'école devrait accorder une place plus importante à l'éducation aux médias et à l'information.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "Les réformes du système éducatif français pour l'adapter au XXIe siècle",
+              "Les résultats de la France aux évaluations internationales",
+              "La construction de nouvelles écoles dans les quartiers prioritaires",
+              "Le recrutement des enseignants en France"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article présente les différentes mesures de la réforme éducative visant à adapter l'enseignement aux défis contemporains."
+          },
+          {
+            "id": 2,
+            "question": "Quel est le budget supplémentaire débloqué pour la réforme éducative ?",
+            "options": [
+              "500 millions d'euros",
+              "600 millions d'euros",
+              "800 millions d'euros",
+              "1 milliard d'euros"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Le texte mentionne un budget supplémentaire de 800 millions d'euros pour réduire les effectifs dans les classes et améliorer l'équité territoriale."
+          },
+          {
+            "id": 3,
+            "question": "Que peut-on déduire des résultats de la France aux évaluations PISA ?",
+            "options": [
+              "Ils sont en progrès mais insuffisants par rapport aux pays comparables",
+              "La France est classée première mondialement",
+              "Les résultats sont en baisse constante depuis dix ans",
+              "La France a refusé de participer aux évaluations"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le texte indique que les résultats sont « en légère amélioration » mais « demeurent inférieurs à la moyenne des pays comparables », ce qui suggère des progrès insuffisants."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « équité territoriale » dans le contexte de l'éducation ?",
+            "options": [
+              "Une répartition équitable des moyens éducatifs sur l'ensemble du territoire",
+              "Une division du territoire en zones scolaires égales",
+              "Un système de transport scolaire gratuit pour tous",
+              "Une uniformisation des programmes dans toutes les régions"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'équité territoriale vise à garantir que tous les élèves, quel que soit leur lieu de résidence, bénéficient de moyens éducatifs comparables."
+          },
+          {
+            "id": 5,
+            "question": "Pourquoi l'auteur mentionne-t-il l'enquête sur les parents concernant l'éducation aux médias ?",
+            "options": [
+              "Pour montrer une demande sociale en faveur de nouvelles compétences éducatives",
+              "Pour démontrer que les parents sont satisfaits du système actuel",
+              "Pour prouver que l'éducation aux médias est déjà bien enseignée",
+              "Pour critiquer l'absence totale de formation des enseignants"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le fait que 64% des parents souhaitent plus d'éducation aux médias illustre une demande sociale qui justifie les orientations de la réforme."
+          }
+        ]
+      },
+      "109": {
+        "name": "RFI — Géopolitique mondiale : l'émergence d'un nouvel ordre i",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "Les relations internationales connaissent actuellement des bouleversements majeurs, marqués par l'affirmation de nouvelles puissances et la remise en cause des équilibres établis depuis la fin de la guerre froide. L'essor économique de la Chine, le retour de la Russie sur la scène diplomatique et l'émergence du G20 comme forum de concertation privilégié redessinent la carte du pouvoir mondial. Il est probable que cette recomposition géopolitique s'accélère dans les années à venir.\n\n« Nous assistons à une transition historique vers un monde multipolaire, où les alliances traditionnelles sont réévaluées », analyse une chercheuse en relations internationales de Sciences Po. Les organisations internationales, notamment l'ONU et l'OMC, peinent à s'adapter à cette nouvelle configuration, ce qui suscite des interrogations sur leur capacité à réguler les conflits et les échanges mondiaux. Il faudrait que ces institutions soient réformées en profondeur pour rester pertinentes.\n\nLa France, forte de son réseau diplomatique et de sa présence au Conseil de sécurité, cherche à maintenir son influence tout en nouant de nouveaux partenariats stratégiques. Le président a récemment plaidé pour une « autonomie stratégique européenne » lors d'un sommet à Bruxelles, appelant les États membres à renforcer leur coopération en matière de défense et de politique étrangère. Selon un sondage réalisé dans six pays européens, 58% des citoyens se déclarent favorables à une politique étrangère commune, bien que les divergences entre États membres restent importantes.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "La recomposition des relations internationales vers un monde multipolaire",
+              "Les conflits armés au Moyen-Orient",
+              "L'histoire de la guerre froide",
+              "Les échanges commerciaux entre l'Europe et l'Asie"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine les bouleversements géopolitiques actuels et l'émergence d'un nouvel ordre international multipolaire."
+          },
+          {
+            "id": 2,
+            "question": "Quel est le pourcentage de citoyens européens favorables à une politique étrangère commune ?",
+            "options": [
+              "48%",
+              "52%",
+              "58%",
+              "62%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Le sondage mentionné révèle que 58% des citoyens européens se déclarent favorables à une politique étrangère commune."
+          },
+          {
+            "id": 3,
+            "question": "Quelle est la position de la France dans ce nouvel ordre mondial ?",
+            "options": [
+              "Elle cherche à maintenir son influence tout en s'adaptant aux changements",
+              "Elle a perdu toute influence sur la scène internationale",
+              "Elle s'oppose systématiquement à l'émergence de nouvelles puissances",
+              "Elle se retire de toutes les organisations internationales"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le texte indique que la France « cherche à maintenir son influence tout en nouant de nouveaux partenariats stratégiques », ce qui montre une stratégie d'adaptation."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « autonomie stratégique européenne » dans le contexte ?",
+            "options": [
+              "La capacité de l'Europe à agir indépendamment sur la scène internationale",
+              "L'indépendance énergétique totale de l'Europe",
+              "La fermeture des frontières européennes",
+              "Le retrait de l'Europe de l'OTAN"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'autonomie stratégique européenne fait référence à la capacité de l'Union européenne à définir et mener sa propre politique de défense et étrangère."
+          },
+          {
+            "id": 5,
+            "question": "Pourquoi l'auteur cite-t-il la chercheuse de Sciences Po ?",
+            "options": [
+              "Pour apporter une analyse experte sur la transition vers un monde multipolaire",
+              "Pour donner un avis personnel sous couvert d'expertise",
+              "Pour contredire les affirmations du gouvernement français",
+              "Pour annoncer une nouvelle alliance militaire"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "La citation de la chercheuse apporte une crédibilité académique à l'analyse de la transition vers un monde multipolaire."
+          }
+        ]
+      },
+      "110": {
+        "name": "RFI — Les nouvelles solidarités face à la fragmentation du li",
+        "exam": "TCF Canada",
+        "module": "reading",
+        "duration": 45,
+        "passageContent": "La société française contemporaine est traversée par des tensions qui interrogent la cohésion nationale. Entre individualisme croissant et fragmentation sociale, de nouvelles formes de solidarité émergent pourtant, témoignant d'une capacité de résilience collective. Les associations et les initiatives citoyennes se multiplient, notamment dans les domaines de l'aide alimentaire, du soutien scolaire et de l'accompagnement des personnes isolées. Il est remarquable que l'engagement citoyen se renouvelle malgré un contexte de défiance envers les institutions.\n\n« On observe une véritable renaissance de l'engagement citoyen, particulièrement chez les jeunes générations », explique une sociologue spécialiste des mouvements associatifs. Selon une enquête récente, 62% des 18-35 ans déclarent avoir participé à au moins une action bénévole au cours des douze derniers mois, un chiffre en hausse constante depuis cinq ans. Il serait intéressant que les pouvoirs publics s'appuient davantage sur cet élan pour renforcer les politiques de cohésion sociale.\n\nLes plateformes numériques jouent un rôle catalyseur dans cette recomposition du lien social, en facilitant la mise en relation des volontaires et des personnes dans le besoin. Cependant, des voix s'élèvent pour mettre en garde contre une « ubérisation » de la solidarité qui affaiblirait les services publics. Le débat sur le rôle de l'État et de la société civile dans la protection sociale reste plus que jamais d'actualité. Une enquête d'opinion révèle que 76% des Français estiment que la solidarité est une valeur fondamentale qui devrait être davantage encouragée par les politiques publiques.",
+        "questions": [
+          {
+            "id": 1,
+            "question": "Quel est le sujet principal de cet article ?",
+            "options": [
+              "Les nouvelles formes de solidarité et d'engagement citoyen en France",
+              "La crise économique et ses conséquences sociales",
+              "Les réformes du système de protection sociale",
+              "L'impact des réseaux sociaux sur la santé mentale"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'article examine comment de nouvelles formes de solidarité émergent dans la société française contemporaine, malgré les tensions et la fragmentation sociale."
+          },
+          {
+            "id": 2,
+            "question": "Quel pourcentage de jeunes de 18-35 ans a participé à une action bénévole ?",
+            "options": [
+              "52%",
+              "58%",
+              "62%",
+              "68%"
+            ],
+            "type": "mcq",
+            "correctAnswer": 2,
+            "explanation": "Le texte mentionne que 62% des 18-35 ans déclarent avoir participé à au moins une action bénévole au cours des douze derniers mois."
+          },
+          {
+            "id": 3,
+            "question": "Quelle est l'attitude des jeunes générations vis-à-vis de l'engagement citoyen ?",
+            "options": [
+              "Elles sont de plus en plus engagées, avec une hausse constante du bénévolat",
+              "Elles se désintéressent complètement de l'engagement associatif",
+              "Elles préfèrent les engagements politiques traditionnels",
+              "Elles sont moins engagées que les générations précédentes"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le chiffre de 62% est en hausse constante depuis cinq ans, ce qui témoigne d'un engagement croissant des jeunes générations."
+          },
+          {
+            "id": 4,
+            "question": "Que signifie « ubérisation de la solidarité » dans le contexte ?",
+            "options": [
+              "La transformation de l'aide sociale en services marchands via des plateformes",
+              "La généralisation des services de livraison à domicile",
+              "La création d'une application de covoiturage solidaire",
+              "La privatisation complète des services d'aide sociale"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "L'« ubérisation » de la solidarité fait référence à la crainte que les plateformes numériques transforment l'aide sociale en services marchands, au détriment des services publics traditionnels."
+          },
+          {
+            "id": 5,
+            "question": "Quel est l'objectif de l'auteur en mentionnant que 76% des Français valorisent la solidarité ?",
+            "options": [
+              "Souligner le décalage entre les valeurs affirmées et les politiques menées",
+              "Démontrer que la solidarité est une valeur en déclin",
+              "Prouver que les Français sont égoïstes",
+              "Annoncer une nouvelle loi sur la solidarité"
+            ],
+            "type": "mcq",
+            "correctAnswer": 0,
+            "explanation": "Le fait que 76% des Français considèrent la solidarité comme une valeur fondamentale suggère un décalage entre cette aspiration et les politiques publiques actuelles."
+          }
+        ]
+      }
+    }
+  }
+}
