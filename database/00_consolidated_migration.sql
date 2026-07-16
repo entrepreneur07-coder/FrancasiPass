@@ -17,9 +17,9 @@ create table if not exists public.profiles (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.profiles enable row level security;
-create policy if not exists "Public profiles are viewable by everyone." on profiles for select using ( true );
-create policy if not exists "Users can insert their own profile." on profiles for insert with check ( auth.uid() = id );
-create policy if not exists "Users can update own profile." on profiles for update using ( auth.uid() = id );
+create policy "Public profiles are viewable by everyone." on profiles for select using ( true );
+create policy "Users can insert their own profile." on profiles for insert with check ( auth.uid() = id );
+create policy "Users can update own profile." on profiles for update using ( auth.uid() = id );
 
 create or replace function public.handle_new_user()
 returns trigger as $$
@@ -52,8 +52,8 @@ create table if not exists public.subscriptions (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.subscriptions enable row level security;
-create policy if not exists "Users can view own subscription." on subscriptions for select using ( auth.uid() = user_id );
-create policy if not exists "Users can update own subscription." on subscriptions for update using ( auth.uid() = user_id );
+create policy "Users can view own subscription." on subscriptions for select using ( auth.uid() = user_id );
+create policy "Users can update own subscription." on subscriptions for update using ( auth.uid() = user_id );
 
 -- 03_tests.sql
 create table if not exists public.mock_tests (
@@ -68,7 +68,7 @@ create table if not exists public.mock_tests (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.mock_tests enable row level security;
-create policy if not exists "Tests are viewable by everyone." on public.mock_tests for select using ( true );
+create policy "Tests are viewable by everyone." on public.mock_tests for select using ( true );
 
 create table if not exists public.test_questions (
   id uuid default gen_random_uuid() primary key,
@@ -82,7 +82,7 @@ create table if not exists public.test_questions (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.test_questions enable row level security;
-create policy if not exists "Questions are viewable by everyone." on public.test_questions for select using ( true );
+create policy "Questions are viewable by everyone." on public.test_questions for select using ( true );
 
 create table if not exists public.test_attempts (
   id uuid default gen_random_uuid() primary key,
@@ -95,9 +95,9 @@ create table if not exists public.test_attempts (
   completed_at timestamp with time zone
 );
 alter table public.test_attempts enable row level security;
-create policy if not exists "Users can view own attempts." on public.test_attempts for select using (auth.uid() = user_id);
-create policy if not exists "Users can start own attempts." on public.test_attempts for insert with check (auth.uid() = user_id);
-create policy if not exists "Users can update own attempts." on public.test_attempts for update using (auth.uid() = user_id);
+create policy "Users can view own attempts." on public.test_attempts for select using (auth.uid() = user_id);
+create policy "Users can start own attempts." on public.test_attempts for insert with check (auth.uid() = user_id);
+create policy "Users can update own attempts." on public.test_attempts for update using (auth.uid() = user_id);
 
 create table if not exists public.user_answers (
   id uuid default gen_random_uuid() primary key,
@@ -109,8 +109,8 @@ create table if not exists public.user_answers (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.user_answers enable row level security;
-create policy if not exists "Users can view own answers." on public.user_answers for select using (exists (select 1 from public.test_attempts where id = attempt_id and user_id = auth.uid()));
-create policy if not exists "Users can submit own answers." on public.user_answers for insert with check (exists (select 1 from public.test_attempts where id = attempt_id and user_id = auth.uid()));
+create policy "Users can view own answers." on public.user_answers for select using (exists (select 1 from public.test_attempts where id = attempt_id and user_id = auth.uid()));
+create policy "Users can submit own answers." on public.user_answers for insert with check (exists (select 1 from public.test_attempts where id = attempt_id and user_id = auth.uid()));
 
 -- 04_vocabulary.sql
 create table if not exists public.vocabulary (
@@ -123,7 +123,7 @@ create table if not exists public.vocabulary (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.vocabulary enable row level security;
-create policy if not exists "Vocabulary is viewable by all." on public.vocabulary for select using ( true );
+create policy "Vocabulary is viewable by all." on public.vocabulary for select using ( true );
 
 create table if not exists public.user_vocabulary_progress (
   id uuid default gen_random_uuid() primary key,
@@ -138,7 +138,7 @@ create table if not exists public.user_vocabulary_progress (
   unique(user_id, word_id)
 );
 alter table public.user_vocabulary_progress enable row level security;
-create policy if not exists "Users can manage own vocab progress." on public.user_vocabulary_progress using (auth.uid() = user_id);
+create policy "Users can manage own vocab progress." on public.user_vocabulary_progress using (auth.uid() = user_id);
 
 -- 05_ai_features.sql
 create table if not exists public.ai_tutor_conversations (
@@ -150,7 +150,7 @@ create table if not exists public.ai_tutor_conversations (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.ai_tutor_conversations enable row level security;
-create policy if not exists "Users can see own tutor history." on public.ai_tutor_conversations using (auth.uid() = user_id);
+create policy "Users can see own tutor history." on public.ai_tutor_conversations using (auth.uid() = user_id);
 
 create table if not exists public.study_plans (
   id uuid default gen_random_uuid() primary key,
@@ -159,7 +159,7 @@ create table if not exists public.study_plans (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.study_plans enable row level security;
-create policy if not exists "Users can see own study plans." on public.study_plans using (auth.uid() = user_id);
+create policy "Users can see own study plans." on public.study_plans using (auth.uid() = user_id);
 
 create table if not exists public.writing_submissions (
   id uuid default gen_random_uuid() primary key,
@@ -171,7 +171,7 @@ create table if not exists public.writing_submissions (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.writing_submissions enable row level security;
-create policy if not exists "Users can see own writing submissions." on public.writing_submissions using (auth.uid() = user_id);
+create policy "Users can see own writing submissions." on public.writing_submissions using (auth.uid() = user_id);
 
 create table if not exists public.speaking_evaluations (
   id uuid default gen_random_uuid() primary key,
@@ -184,7 +184,7 @@ create table if not exists public.speaking_evaluations (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.speaking_evaluations enable row level security;
-create policy if not exists "Users can see own speaking evals." on public.speaking_evaluations using (auth.uid() = user_id);
+create policy "Users can see own speaking evals." on public.speaking_evaluations using (auth.uid() = user_id);
 
 -- 06_community_and_news.sql
 create table if not exists public.news_articles (
@@ -201,7 +201,7 @@ create table if not exists public.news_articles (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.news_articles enable row level security;
-create policy if not exists "News is viewable by all." on public.news_articles for select using ( true );
+create policy "News is viewable by all." on public.news_articles for select using ( true );
 
 create table if not exists public.community_posts (
   id uuid default gen_random_uuid() primary key,
@@ -212,9 +212,9 @@ create table if not exists public.community_posts (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.community_posts enable row level security;
-create policy if not exists "Users can view posts." on public.community_posts for select using ( true );
-create policy if not exists "Users can create posts." on public.community_posts for insert with check (auth.uid() = author_id);
-create policy if not exists "Users can edit own posts." on public.community_posts for update using (auth.uid() = author_id);
+create policy "Users can view posts." on public.community_posts for select using ( true );
+create policy "Users can create posts." on public.community_posts for insert with check (auth.uid() = author_id);
+create policy "Users can edit own posts." on public.community_posts for update using (auth.uid() = author_id);
 
 -- 07_tracking.sql
 create table if not exists public.progress_tracking (
@@ -225,7 +225,7 @@ create table if not exists public.progress_tracking (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 alter table public.progress_tracking enable row level security;
-create policy if not exists "Users can see own tracking." on public.progress_tracking using (auth.uid() = user_id);
+create policy "Users can see own tracking." on public.progress_tracking using (auth.uid() = user_id);
 
 create table if not exists public.daily_stats (
   id uuid default gen_random_uuid() primary key,
@@ -238,7 +238,7 @@ create table if not exists public.daily_stats (
   unique(user_id, date)
 );
 alter table public.daily_stats enable row level security;
-create policy if not exists "Users can see own stats." on public.daily_stats using (auth.uid() = user_id);
+create policy "Users can see own stats." on public.daily_stats using (auth.uid() = user_id);
 
 -- Add indexes
 create index if not exists idx_test_attempts_user on public.test_attempts(user_id);
