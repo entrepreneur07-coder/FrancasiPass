@@ -421,18 +421,30 @@ function ListeningQuestion({
   onSelect: (id: string, option: string) => void
 }) {
   const [playing, setPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const animRef = useRef<number>(0)
 
   const handlePlay = () => {
     if (playing) {
       audioRef.current?.pause()
       setPlaying(false)
+      cancelAnimationFrame(animRef.current)
       return
     }
 
     if (!audioRef.current) {
       audioRef.current = new Audio(question.audio_url)
-      audioRef.current.onended = () => setPlaying(false)
+      audioRef.current.onended = () => {
+        setPlaying(false)
+        setProgress(0)
+        cancelAnimationFrame(animRef.current)
+      }
+      audioRef.current.ontimeupdate = () => {
+        if (audioRef.current) {
+          setProgress((audioRef.current.currentTime / (audioRef.current.duration || 30)) * 100)
+        }
+      }
     }
     audioRef.current.play()
     setPlaying(true)
@@ -443,48 +455,87 @@ function ListeningQuestion({
       audioRef.current.pause()
       audioRef.current = null
       setPlaying(false)
+      setProgress(0)
+      cancelAnimationFrame(animRef.current)
     }
   }, [question.id])
 
   return (
     <Card glass>
       <CardContent className="p-6">
-        {/* Audio Player */}
+        {/* Audio Player with Waveform */}
         <div className="mb-6">
-          <div className="flex items-center gap-4 p-4 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
-            <button
-              onClick={handlePlay}
-              className="h-12 w-12 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0"
-            >
-              {playing ? (
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <rect x="6" y="4" width="4" height="16" rx="1" />
-                  <rect x="14" y="4" width="4" height="16" rx="1" />
-                </svg>
-              ) : (
-                <svg className="h-6 w-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              )}
-            </button>
-            <div className="flex-1">
-              <div className="h-1.5 bg-primary-200 dark:bg-primary-800 rounded-full overflow-hidden">
-                <div className={`h-full bg-primary-500 rounded-full transition-all duration-300 ${playing ? "w-full animate-pulse" : "w-0"}`} />
-              </div>
-              <div className="flex justify-between mt-1 text-xs text-primary-600 dark:text-primary-400">
-                <span>{playing ? "Playing French dialogue..." : "Click to hear the conversation"}</span>
-                <span>{playing ? "●" : "▶"}</span>
+          <div className="p-6 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
+            <div className="flex items-center gap-4 mb-4">
+              <button
+                onClick={handlePlay}
+                className="h-14 w-14 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0 shadow-lg shadow-primary-500/30"
+              >
+                {playing ? (
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                )}
+              </button>
+              <div className="flex-1">
+                <div className="text-sm font-medium text-primary-700 dark:text-primary-300 mb-1">
+                  {playing ? "Lecture en cours..." : "Extrait audio"}
+                </div>
+                <div className="text-xs text-primary-500 dark:text-primary-400">
+                  {playing ? "Écoutez attentivement" : "Appuyez pour écouter"}
+                </div>
               </div>
             </div>
+
+            {/* Waveform visualization */}
+            <div className="flex items-end gap-0.5 h-12 mb-3">
+              {Array.from({ length: 40 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-full transition-all duration-150"
+                  style={{
+                    height: playing
+                      ? `${20 + Math.sin(i * 0.5 + Date.now() * 0.003) * 30 + Math.random() * 10}%`
+                      : `${15 + Math.sin(i * 0.5) * 10}%`,
+                    backgroundColor: playing
+                      ? i < (progress / 100) * 40
+                        ? "rgb(22, 72, 192)"
+                        : "rgba(22, 72, 192, 0.2)"
+                      : "rgba(22, 72, 192, 0.15)",
+                    transition: playing ? "height 0.15s" : "none",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Progress bar */}
+            <div className="h-1 bg-primary-200 dark:bg-primary-800 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary-500 rounded-full transition-all duration-200"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
-          <p className="text-xs text-primary-500 dark:text-primary-400 mt-2 text-center">
-            {playing ? "🔊 Listen carefully, then answer the question below" : "▶ Press play to hear the audio"}
-          </p>
         </div>
+
+        {/* Transcript */}
+        {question.question_text && question.audio_url && (
+          <div className="mb-4 p-3 bg-gray-50 dark:bg-surface-dark-muted rounded-lg border border-surface-border dark:border-surface-dark-border">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">📝 Transcription</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">{question.question_text.split(/Question\s*:/i)[0]}</p>
+          </div>
+        )}
 
         {/* Question */}
         <h3 className="text-body font-medium text-gray-900 dark:text-white mb-4">
-          {question.question_text}
+          {question.question_text.includes("Question :") || question.question_text.includes("Question:")
+            ? question.question_text.split(/Question\s*:/i).slice(1).join(" Question :").trim()
+            : question.question_text}
         </h3>
 
         {/* Options */}
@@ -528,11 +579,18 @@ function ReadingQuestion({
   passageContent?: string
   currentQuestionIndex?: number
 }) {
+  // Extract passage from question_text if not provided separately
+  // Format: "Le texte...\n\nQuestion : ..."
+  const qText = question.question_text
+  const hasEmbeddedPassage = qText.includes("Question :") || qText.includes("Question:")
+  const passage = passageContent || (hasEmbeddedPassage ? qText.split(/Question\s*:/i)[0].trim() : "")
+  const questionOnly = hasEmbeddedPassage ? qText.split(/Question\s*:/i).slice(1).join("Question :").trim() : qText
+
   return (
     <div className="grid lg:grid-cols-2 gap-6">
       {/* Passage Panel — shown at the top or side depending on screen size */}
-      {passageContent && (
-        <div className="lg:order-1">
+      {passage && (
+        <div className="lg:order-1 max-h-[60vh] lg:max-h-[70vh] overflow-y-auto">
           <Card glass>
             <CardContent className="p-5">
               <div className="flex items-center gap-2 mb-3">
@@ -540,20 +598,20 @@ function ReadingQuestion({
                 <span className="text-xs text-gray-400">Lisez attentivement le texte ci-dessous</span>
               </div>
               <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-serif">
-                {passageContent}
+                {passage}
               </div>
             </CardContent>
           </Card>
         </div>
       )}
       {/* Question Panel */}
-      <div className={passageContent ? "lg:order-2" : ""}>
+      <div className={passage ? "lg:order-2" : ""}>
         <Card glass>
           <CardContent className="p-5">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="primary" size="sm">❓ Question {currentQuestionIndex !== undefined ? currentQuestionIndex + 1 : ""}</Badge>
             </div>
-            <h3 className="text-base font-medium text-gray-900 dark:text-white mb-4 whitespace-pre-wrap">{question.question_text}</h3>
+            <h3 className="text-base font-medium text-gray-900 dark:text-white mb-4 whitespace-pre-wrap">{questionOnly}</h3>
             <div className="space-y-2">
               {question.options?.map((opt) => (
                 <button
@@ -593,13 +651,29 @@ function WritingQuestion({
   onChange: (id: string, text: string) => void
 }) {
   const wordCount = value.trim() ? value.trim().split(/\s+/).length : 0
+  // Extract the section and prompt text from question_text
+  const parts = question.question_text.split(/\n\n/)
+  const sectionTitle = parts[0]?.replace(/^###\s*/, "") || "Section"
+  const promptText = parts.slice(1).join("\n\n") || question.question_text
+
+  // Determine word count target from the prompt
+  const wordMatch = promptText.match(/(\d+)\s*mots/)
+  const wordTarget = wordMatch ? parseInt(wordMatch[1]) : (promptText.toLowerCase().includes("section a") ? 80 : 200)
+  const isSectionA = promptText.toLowerCase().includes("section a") || wordTarget <= 100
 
   return (
     <Card glass>
       <CardContent className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-body font-medium text-gray-900 dark:text-white whitespace-pre-wrap">{question.question_text}</h3>
-          <Badge variant="outline" size="sm">{wordCount} words</Badge>
+        {/* Section header */}
+        <div className="flex items-center justify-between mb-3">
+          <Badge variant="accent" size="sm">{sectionTitle}</Badge>
+          <Badge variant="outline" size="sm">{wordCount} / {wordTarget} mots</Badge>
+        </div>
+
+        {/* Prompt */}
+        <div className="mb-4 p-4 bg-primary-50 dark:bg-primary-950/30 rounded-xl border border-primary-100 dark:border-primary-900">
+          <p className="text-sm font-medium text-primary-800 dark:text-primary-200 mb-1">📝 Sujet</p>
+          <p className="text-sm text-primary-700 dark:text-primary-300 leading-relaxed">{promptText}</p>
         </div>
 
         <textarea
@@ -612,15 +686,22 @@ function WritingQuestion({
 
         <div className="flex items-center justify-between mt-3">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Respectez le nombre de mots demandé.
+            Minimum {wordTarget} mots requis
           </p>
-          <div className="h-1 w-32 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all ${
-                wordCount >= 120 ? "bg-success" : wordCount >= 60 ? "bg-warning" : "bg-gray-300 dark:bg-gray-600"
-              }`}
-              style={{ width: `${Math.min(100, (wordCount / 120) * 100)}%` }}
-            />
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-40 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all ${
+                  wordCount >= wordTarget ? "bg-success" : wordCount >= wordTarget * 0.5 ? "bg-warning" : "bg-gray-300 dark:bg-gray-600"
+                }`}
+                style={{ width: `${Math.min(100, (wordCount / wordTarget) * 100)}%` }}
+              />
+            </div>
+            <span className={`text-xs font-medium ${
+              wordCount >= wordTarget ? "text-success" : wordCount >= wordTarget * 0.5 ? "text-warning" : "text-gray-400"
+            }`}>
+              {wordCount >= wordTarget ? "✓" : `${wordCount}/${wordTarget}`}
+            </span>
           </div>
         </div>
       </CardContent>
@@ -641,68 +722,159 @@ function SpeakingQuestion({
   onStartRecording: () => void
   onStopRecording: () => void
 }) {
+  const [phase, setPhase] = useState<"ready" | "preparing" | "recording" | "done">("ready")
+  const [prepTime, setPrepTime] = useState(60)
+  const [recTime, setRecTime] = useState(120)
+  const prepRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const recRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const startPrep = () => {
+    setPhase("preparing")
+    setPrepTime(60)
+    prepRef.current = setInterval(() => {
+      setPrepTime((p) => {
+        if (p <= 1) {
+          clearInterval(prepRef.current!)
+          startRecordingWithTimer()
+          return 0
+        }
+        return p - 1
+      })
+    }, 1000)
+  }
+
+  const startRecordingWithTimer = () => {
+    onStartRecording()
+    setPhase("recording")
+    setRecTime(120)
+    recRef.current = setInterval(() => {
+      setRecTime((p) => {
+        if (p <= 1) {
+          clearInterval(recRef.current!)
+          stopRecordingWithCleanup()
+          return 0
+        }
+        return p - 1
+      })
+    }, 1000)
+  }
+
+  const stopRecordingWithCleanup = () => {
+    if (recRef.current) clearInterval(recRef.current)
+    if (prepRef.current) clearInterval(prepRef.current)
+    onStopRecording()
+    setPhase("done")
+  }
+
+  const formatMins = (seconds: number) => {
+    const m = Math.floor(seconds / 60)
+    const s = seconds % 60
+    return `${m}:${s.toString().padStart(2, "0")}`
+  }
+
+  // Extract section title from question_text
+  const parts = question.question_text.split(/\n\n/)
+  const sectionTitle = parts[0]?.replace(/^###\s*/, "") || ""
+
   return (
     <Card glass>
       <CardContent className="p-6 text-center">
         <div className="mb-6">
-          <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 flex items-center justify-center mx-auto mb-4">
-            <svg className="h-8 w-8 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+          <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 flex items-center justify-center mx-auto mb-4 relative">
+            <svg className="h-10 w-10 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
               <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
               <line x1="12" y1="19" x2="12" y2="23" />
               <line x1="8" y1="23" x2="16" y2="23" />
             </svg>
+            {phase === "recording" && (
+              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-error animate-ping" />
+            )}
           </div>
+
+          {sectionTitle && (
+            <Badge variant="accent" size="sm" className="mb-2">{sectionTitle}</Badge>
+          )}
+
           <h3 className="text-body font-medium text-gray-900 dark:text-white mb-2 whitespace-pre-wrap">
-            {question.question_text}
+            {parts.slice(1).join("\n\n") || question.question_text}
           </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Vous avez 2 minutes pour enregistrer votre réponse.
-          </p>
         </div>
 
-        {/* Recording Controls */}
+        {/* Timer Display */}
+        {phase === "preparing" && (
+          <div className="mb-6">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <span className="text-4xl font-mono font-bold text-warning">{formatMins(prepTime)}</span>
+            </div>
+            <p className="text-sm text-warning font-medium">Temps de préparation</p>
+            <div className="h-1.5 w-48 mx-auto mt-2 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
+              <div className="h-full bg-warning rounded-full transition-all" style={{ width: `${(prepTime / 60) * 100}%` }} />
+            </div>
+          </div>
+        )}
+
+        {phase === "recording" && (
+          <div className="mb-6">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <span className="h-3 w-3 rounded-full bg-error animate-pulse" />
+              <span className="text-4xl font-mono font-bold text-error">{formatMins(recTime)}</span>
+            </div>
+            <p className="text-sm text-error font-medium">Enregistrement en cours...</p>
+            <div className="h-1.5 w-48 mx-auto mt-2 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
+              <div className="h-full bg-error rounded-full transition-all" style={{ width: `${(recTime / 120) * 100}%` }} />
+            </div>
+          </div>
+        )}
+
+        {/* Controls */}
         <div className="flex flex-col items-center gap-4">
-          {isRecording ? (
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-error animate-pulse" />
-                <span className="text-sm font-medium text-error">Recording...</span>
-              </div>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={onStopRecording}
-                className="border-error text-error hover:bg-error-light/20"
-              >
-                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <rect x="6" y="6" width="12" height="12" rx="2" />
-                </svg>
-                Stop Recording
-              </Button>
-            </div>
-          ) : recorded ? (
-            <div className="flex flex-col items-center gap-3">
-              <Badge variant="success" size="lg">✓ Recorded</Badge>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={onStartRecording}
-              >
-                Re-record
-              </Button>
-            </div>
-          ) : (
+          {phase === "ready" && (
+            <Button variant="primary" size="lg" onClick={startPrep}>
+              <svg className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path d="M12 6v6l4 2" />
+              </svg>
+              Commencer la préparation
+            </Button>
+          )}
+
+          {phase === "preparing" && (
             <Button
               variant="primary"
               size="lg"
-              onClick={onStartRecording}
+              onClick={() => {
+                if (prepRef.current) clearInterval(prepRef.current)
+                startRecordingWithTimer()
+              }}
             >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="6" />
               </svg>
-              Start Recording
+              Commencer l'enregistrement
             </Button>
+          )}
+
+          {phase === "recording" && (
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={stopRecordingWithCleanup}
+              className="border-error text-error hover:bg-error-light/20"
+            >
+              <svg className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <rect x="6" y="6" width="12" height="12" rx="2" />
+              </svg>
+              Arrêter l'enregistrement
+            </Button>
+          )}
+
+          {phase === "done" && (
+            <div className="flex flex-col items-center gap-3">
+              <Badge variant="success" size="lg">✓ Enregistré</Badge>
+              <Button variant="outline" size="sm" onClick={() => setPhase("ready")}>
+                Réessayer
+              </Button>
+            </div>
           )}
         </div>
       </CardContent>
