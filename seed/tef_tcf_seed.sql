@@ -614,13 +614,10 @@ Vous avez été témoin d''une scène insolite dans un parc public. Rédigez un 
 ('05f1006c-0080-419d-87f6-7ce841b02b16', '319775b5-56bf-458c-8b60-1f3c7913daa4', '### Section B : Lettre d''argumentation (200 mots minimum)
 
 La direction de votre espace de coworking a décidé de supprimer le service de café gratuit pour réduire les coûts. Écrivez une lettre au gestionnaire pour exprimer votre désaccord en argumentant sur l''impact pour la communauté des travailleurs.', NULL, NULL, NULL, 10, 1, '2026-07-18T04:12:24.685Z'),
-('9cd716db-cdb0-47e0-ac11-5fc0e9c3132b', '3370fdff-bff9-4a6e-b434-65646a01a437', '### Tâche 1 : Message de justification (60-120 mots)
 
 Vous travaillez dans une bibliothèque et vous devez justifier votre absence imprévue de ce matin auprès de votre supérieur.', NULL, NULL, NULL, 10, 0, '2026-07-18T04:12:24.685Z'),
-('521e0c60-dd6d-4093-b5c3-a455f99a57ae', '3370fdff-bff9-4a6e-b434-65646a01a437', '### Tâche 2 : Article de revue (120-150 mots)
 
 Rédigez un article pour une revue universitaire sur l''importance des échanges linguistiques pour les étudiants internationaux.', NULL, NULL, NULL, 10, 1, '2026-07-18T04:12:24.685Z'),
-('8ad0f04d-e7b4-4a07-8354-b9e77f8b55bc', '3370fdff-bff9-4a6e-b434-65646a01a437', '### Tâche 3 : Comparaison de points de vue (120-180 mots)
 
 Résumez et comparez deux opinions sur le développement durable dans les grandes villes canadiennes.', NULL, NULL, NULL, 10, 2, '2026-07-18T04:12:24.685Z'),
 ('bfafef63-8f9e-4780-9a4b-6ddc409bffc6', 'a2a4037a-814b-46f8-a768-b8b8dcefc649', '### Section A : S''informer sur un service
@@ -629,12 +626,9 @@ Vous avez vu une annonce pour un service de garde d''animaux à domicile. Appele
 ('c0b0e4f4-4ec7-4976-82f7-19cc8d4caeff', 'a2a4037a-814b-46f8-a768-b8b8dcefc649', '### Section B : Convaincre un proche
 
 Un ami hésite à participer à un marathon de bienfaisance. Essayez de le convaincre en mettant en avant les bienfaits personnels et l''impact social de l''événement.', NULL, NULL, NULL, 10, 1, '2026-07-18T04:12:24.685Z'),
-('561bda29-64a9-4da0-8b55-6f642000a4de', '654a6a85-64cd-490b-b285-f95e5db6368b', '### Tâche 1 : Présentation de soi
 
 Présentez votre environnement de travail actuel et ce que vous appréciez le plus dans votre profession.', NULL, NULL, NULL, 10, 0, '2026-07-18T04:12:24.685Z'),
-('13ff78b8-43cc-44c8-99ae-61531db766c8', '654a6a85-64cd-490b-b285-f95e5db6368b', '### Tâche 2 : Interaction avec l''examinateur
 
 Vous souhaitez organiser un voyage de groupe. Discutez avec l''examinateur (votre agent de voyage) pour choisir la destination idéale selon vos critères.', NULL, NULL, NULL, 10, 1, '2026-07-18T04:12:24.685Z'),
-('36f7e275-7543-4c5c-9e8b-7d4a53d5d1af', '654a6a85-64cd-490b-b285-f95e5db6368b', '### Tâche 3 : Expression d''un point de vue
 
 Donnez votre avis sur l''impact des écrans sur l''éducation des jeunes enfants. L''examinateur vous posera des questions contradictoires.', NULL, NULL, NULL, 10, 2, '2026-07-18T04:12:24.685Z');
