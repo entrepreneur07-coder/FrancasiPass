@@ -120,7 +120,9 @@ export async function POST(request: Request) {
     for (const graded of gradedAnswers) {
       if (!graded) continue
       totalScore += graded.score
-      maxScore += 10
+      // Find the corresponding question to get its points
+      const question = questions.find(qu => qu.id === graded.question_id)
+      maxScore += question?.points || 10
       
       const { score, ...answerData } = graded
       userAnswers.push(answerData)

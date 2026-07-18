@@ -299,7 +299,13 @@ export default function ResultsPage() {
                         </div>
                       )}
                       <div className="flex-1">
-                        <div className="text-sm text-gray-900 dark:text-white mb-2 font-medium" dangerouslySetInnerHTML={{ __html: ans.question.replace(/\n/g, '<br/>') }} />
+                        <div className="text-sm text-gray-900 dark:text-white mb-2 font-medium" 
+                          dangerouslySetInnerHTML={{ 
+                            __html: (ans.question.includes("Question :") || ans.question.includes("Question:")
+                              ? ans.question.split(/Question\s*:/i).slice(1).join("Question :").trim()
+                              : ans.question).replace(/\n/g, '<br/>') 
+                          }} 
+                        />
                         
                         <div className="flex flex-col gap-2">
                           <div className="p-3 bg-gray-50 dark:bg-surface-dark rounded-lg">

@@ -524,7 +524,7 @@ function ListeningQuestion({
         </div>
 
         {/* Transcript */}
-        {question.question_text && question.audio_url && (
+        {question.question_text && (
           <div className="mb-4 p-3 bg-gray-50 dark:bg-surface-dark-muted rounded-lg border border-surface-border dark:border-surface-dark-border">
             <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">📝 Transcription</p>
             <p className="text-sm text-gray-700 dark:text-gray-300">{question.question_text.split(/Question\s*:/i)[0]}</p>
