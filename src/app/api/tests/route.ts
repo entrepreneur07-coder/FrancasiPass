@@ -5,9 +5,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const type = searchParams.get('type') // tef or tcf
   const module = searchParams.get('module') // reading, listening, writing, speaking
-
   const supabase = await createClient()
-  let query = supabase.from('mock_tests').select('*')
+
+  // Fetch tests with question counts
+  let query = supabase
+    .from('mock_tests')
+    .select('*, test_questions(count)')
 
   if (type) query = query.eq('exam_type', type)
   if (module) query = query.eq('module', module)
@@ -18,7 +21,13 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 400 })
   }
 
-  return NextResponse.json({ tests: data })
+  // Transform to include question count
+  const tests = data.map((test: any) => ({
+    ...test,
+    question_count: test.test_questions?.[0]?.count ?? 0,
+  }))
+
+  return NextResponse.json({ tests })
 }
 
 // POST would be for adding tests (admin only)
