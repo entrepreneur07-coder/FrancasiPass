@@ -29,10 +29,5 @@ export async function GET(
     return NextResponse.json({ error: questionsError.message }, { status: 400 })
   }
 
-  // For reading modules, use the test description as passage content
-  if (test.module === 'reading' && test.description) {
-    test.passageContent = test.description
-  }
-
   return NextResponse.json({ test, questions })
 }

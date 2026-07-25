@@ -42,14 +42,20 @@ export default function TestTakingPage() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [isListening, setIsListening] = useState(false)
+  const [fetchError, setFetchError] = useState<string | null>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
   useEffect(() => {
     async function fetchTestData() {
+      setLoading(true)
+      setFetchError(null)
       try {
         const response = await fetch(`/api/tests/${testId}`)
-        if (!response.ok) throw new Error("Failed to fetch test")
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}))
+          throw new Error(errData.error || `Failed to fetch test (${response.status})`)
+        }
         const data = await response.json()
         
         // Parse options if they are stored as JSON string
@@ -61,8 +67,9 @@ export default function TestTakingPage() {
         setTest(data.test)
         setQuestions(formattedQuestions)
         setTimeLeft(data.test.duration_minutes * 60)
-      } catch (err) {
+      } catch (err: any) {
         console.error(err)
+        setFetchError(err.message || "An unexpected error occurred")
       } finally {
         setLoading(false)
       }
@@ -201,10 +208,29 @@ export default function TestTakingPage() {
   if (!test) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-surface-dark">
-        <div className="text-center">
-          <h2 className="text-heading font-bold mb-2 text-gray-900 dark:text-white">Test not found</h2>
-          <p className="text-body-sm text-gray-500 dark:text-gray-400 mb-4">This test doesn&apos;t exist or hasn&apos;t been created yet.</p>
-          <Button href="/tests" variant="primary">← Back to Test Library</Button>
+        <div className="text-center max-w-md mx-auto px-4">
+          {fetchError ? (
+            <>
+              <div className="h-16 w-16 rounded-full bg-error-light/20 dark:bg-error-dark/20 flex items-center justify-center mx-auto mb-4">
+                <svg className="h-8 w-8 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+              </div>
+              <h2 className="text-heading font-bold mb-2 text-gray-900 dark:text-white">Failed to load test</h2>
+              <p className="text-body-sm text-gray-500 dark:text-gray-400 mb-2">{fetchError}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">The test may not exist or there was a connection issue.</p>
+              <div className="flex gap-3 justify-center">
+                <Button href="/tests" variant="outline">← Back to Test Library</Button>
+                <Button variant="primary" onClick={() => window.location.reload()}>Try Again</Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="text-heading font-bold mb-2 text-gray-900 dark:text-white">Test not found</h2>
+              <p className="text-body-sm text-gray-500 dark:text-gray-400 mb-4">This test doesn&apos;t exist or hasn&apos;t been created yet.</p>
+              <Button href="/tests" variant="primary">← Back to Test Library</Button>
+            </>
+          )}
         </div>
       </div>
     )
@@ -425,7 +451,11 @@ function ListeningQuestion({
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const animRef = useRef<number>(0)
 
+  const hasAudio = !!question.audio_url
+
   const handlePlay = () => {
+    if (!hasAudio) return
+
     if (playing) {
       audioRef.current?.pause()
       setPlaying(false)
@@ -460,83 +490,97 @@ function ListeningQuestion({
     }
   }, [question.id])
 
+  // Extract the script/transcript text (everything before "Question :")
+  // and the question text (everything after "Question :")
+  const qText = question.question_text || ""
+  const hasQuestionSplit = qText.includes("Question :") || qText.includes("Question:")
+  const transcriptText = hasQuestionSplit ? qText.split(/Question\s*:/i)[0].trim() : qText
+  const questionOnly = hasQuestionSplit ? qText.split(/Question\s*:/i).slice(1).join("Question :").trim() : ""
+
   return (
     <Card glass>
       <CardContent className="p-6">
-        {/* Audio Player with Waveform */}
-        <div className="mb-6">
-          <div className="p-6 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
-            <div className="flex items-center gap-4 mb-4">
-              <button
-                onClick={handlePlay}
-                className="h-14 w-14 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0 shadow-lg shadow-primary-500/30"
-              >
-                {playing ? (
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <rect x="6" y="4" width="4" height="16" rx="1" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" />
-                  </svg>
-                ) : (
-                  <svg className="h-6 w-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                )}
-              </button>
-              <div className="flex-1">
-                <div className="text-sm font-medium text-primary-700 dark:text-primary-300 mb-1">
-                  {playing ? "Lecture en cours..." : "Extrait audio"}
-                </div>
-                <div className="text-xs text-primary-500 dark:text-primary-400">
-                  {playing ? "Écoutez attentivement" : "Appuyez pour écouter"}
+        {/* Audio Player - only show when audio_url exists */}
+        {hasAudio ? (
+          <div className="mb-6">
+            <div className="p-6 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
+              <div className="flex items-center gap-4 mb-4">
+                <button
+                  onClick={handlePlay}
+                  className="h-14 w-14 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0 shadow-lg shadow-primary-500/30"
+                >
+                  {playing ? (
+                    <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <rect x="6" y="4" width="4" height="16" rx="1" />
+                      <rect x="14" y="4" width="4" height="16" rx="1" />
+                    </svg>
+                  ) : (
+                    <svg className="h-6 w-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
+                <div className="flex-1">
+                  <div className="text-sm font-medium text-primary-700 dark:text-primary-300 mb-1">
+                    {playing ? "Lecture en cours..." : "Extrait audio"}
+                  </div>
+                  <div className="text-xs text-primary-500 dark:text-primary-400">
+                    {playing ? "Écoutez attentivement" : "Appuyez pour écouter"}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Waveform visualization */}
-            <div className="flex items-end gap-0.5 h-12 mb-3">
-              {Array.from({ length: 40 }).map((_, i) => (
+              {/* Waveform visualization */}
+              <div className="flex items-end gap-0.5 h-12 mb-3">
+                {Array.from({ length: 40 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-full transition-all duration-150"
+                    style={{
+                      height: playing
+                        ? `${20 + Math.sin(i * 0.5 + Date.now() * 0.003) * 30 + Math.random() * 10}%`
+                        : `${15 + Math.sin(i * 0.5) * 10}%`,
+                      backgroundColor: playing
+                        ? i < (progress / 100) * 40
+                          ? "rgb(22, 72, 192)"
+                          : "rgba(22, 72, 192, 0.2)"
+                        : "rgba(22, 72, 192, 0.15)",
+                      transition: playing ? "height 0.15s" : "none",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Progress bar */}
+              <div className="h-1 bg-primary-200 dark:bg-primary-800 rounded-full overflow-hidden">
                 <div
-                  key={i}
-                  className="flex-1 rounded-full transition-all duration-150"
-                  style={{
-                    height: playing
-                      ? `${20 + Math.sin(i * 0.5 + Date.now() * 0.003) * 30 + Math.random() * 10}%`
-                      : `${15 + Math.sin(i * 0.5) * 10}%`,
-                    backgroundColor: playing
-                      ? i < (progress / 100) * 40
-                        ? "rgb(22, 72, 192)"
-                        : "rgba(22, 72, 192, 0.2)"
-                      : "rgba(22, 72, 192, 0.15)",
-                    transition: playing ? "height 0.15s" : "none",
-                  }}
+                  className="h-full bg-primary-500 rounded-full transition-all duration-200"
+                  style={{ width: `${progress}%` }}
                 />
-              ))}
-            </div>
-
-            {/* Progress bar */}
-            <div className="h-1 bg-primary-200 dark:bg-primary-800 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary-500 rounded-full transition-all duration-200"
-                style={{ width: `${progress}%` }}
-              />
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Transcript */}
-        {question.question_text && (
-          <div className="mb-4 p-3 bg-gray-50 dark:bg-surface-dark-muted rounded-lg border border-surface-border dark:border-surface-dark-border">
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">📝 Transcription</p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">{question.question_text.split(/Question\s*:/i)[0]}</p>
+        ) : (
+          /* Transcript display when no audio URL */
+          <div className="mb-6">
+            <div className="p-5 bg-accent-50/50 dark:bg-accent-950/30 rounded-xl border border-accent-200 dark:border-accent-800/40">
+              <div className="flex items-center gap-2 mb-3">
+                <Badge variant="accent" size="sm">📜 Script</Badge>
+                <span className="text-xs text-gray-500 dark:text-gray-400">Dialogue à lire</span>
+              </div>
+              <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                {transcriptText}
+              </div>
+            </div>
           </div>
         )}
 
         {/* Question */}
-        <h3 className="text-body font-medium text-gray-900 dark:text-white mb-4">
-          {question.question_text.includes("Question :") || question.question_text.includes("Question:")
-            ? question.question_text.split(/Question\s*:/i).slice(1).join(" Question :").trim()
-            : question.question_text}
-        </h3>
+        {questionOnly && (
+          <h3 className="text-body font-medium text-gray-900 dark:text-white mb-4">
+            {questionOnly}
+          </h3>
+        )}
 
         {/* Options */}
         <div className="space-y-2.5">
