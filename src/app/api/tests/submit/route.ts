@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       userAnswers.push({
         attempt_id: attempt.id,
         question_id: q.id,
-        selected_answer: userAnswer,
+        user_answer: userAnswer,
         is_correct: isCorrect
       })
     }
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
       return {
         attempt_id: attempt.id,
         question_id: q.id,
-        selected_answer: test.module === 'speaking' ? (transcript || 'Audio submitted') : userAnswer,
+        user_answer: test.module === 'speaking' ? (transcript || 'Audio submitted') : userAnswer,
         ai_feedback: aiFeedback,
         score // temporary field to aggregate
       }
@@ -144,7 +144,7 @@ export async function POST(request: Request) {
     .update({
       score: totalScore,
       max_score: maxScore,
-      clb_equivalent: clbEquivalent,
+      clb_level: clbEquivalent,
       completed_at: new Date().toISOString()
     })
     .eq('id', attempt.id)
