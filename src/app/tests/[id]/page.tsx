@@ -448,10 +448,29 @@ function ListeningQuestion({
 }) {
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [speaking, setSpeaking] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const animRef = useRef<number>(0)
 
   const hasAudio = !!question.audio_url
+
+  const handleTTS = () => {
+    if (!transcriptText) return
+
+    if (speaking) {
+      window.speechSynthesis.cancel()
+      setSpeaking(false)
+      return
+    }
+
+    const utterance = new SpeechSynthesisUtterance(transcriptText)
+    utterance.lang = 'fr-FR'
+    utterance.rate = 0.9
+    utterance.onend = () => setSpeaking(false)
+    utterance.onerror = () => setSpeaking(false)
+    setSpeaking(true)
+    window.speechSynthesis.speak(utterance)
+  }
 
   const handlePlay = () => {
     if (!hasAudio) return
@@ -488,6 +507,8 @@ function ListeningQuestion({
       setProgress(0)
       cancelAnimationFrame(animRef.current)
     }
+    window.speechSynthesis.cancel()
+    setSpeaking(false)
   }, [question.id])
 
   // Extract the script/transcript text (everything before "Question :")
@@ -561,16 +582,47 @@ function ListeningQuestion({
             </div>
           </div>
         ) : (
-          /* Transcript display when no audio URL */
+          /* Transcript with TTS when no audio URL */
           <div className="mb-6">
-            <div className="p-5 bg-accent-50/50 dark:bg-accent-950/30 rounded-xl border border-accent-200 dark:border-accent-800/40">
-              <div className="flex items-center gap-2 mb-3">
-                <Badge variant="accent" size="sm">📜 Script</Badge>
-                <span className="text-xs text-gray-500 dark:text-gray-400">Dialogue à lire</span>
+            <div className="p-5 bg-gradient-to-br from-accent-50 to-accent-100/50 dark:from-accent-950/30 dark:to-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800/40">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <Badge variant="accent" size="sm">🎧 Écoutez</Badge>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">Audio généré</span>
+                </div>
+                <button
+                  onClick={handleTTS}
+                  className={`h-10 w-10 rounded-full flex items-center justify-center transition-all ${
+                    speaking
+                      ? "bg-error-500 text-white shadow-lg shadow-error-500/30"
+                      : "bg-accent-600 text-white hover:bg-accent-700 shadow-lg shadow-accent-500/30"
+                  }`}
+                  aria-label={speaking ? "Arrêter la lecture" : "Lire le texte"}
+                >
+                  {speaking ? (
+                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <rect x="6" y="4" width="4" height="16" rx="1" />
+                      <rect x="14" y="4" width="4" height="16" rx="1" />
+                    </svg>
+                  ) : (
+                    <svg className="h-5 w-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
               </div>
               <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
                 {transcriptText}
               </div>
+              {speaking && (
+                <div className="flex items-center gap-1.5 mt-3">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500"></span>
+                  </span>
+                  <span className="text-xs text-accent-600 dark:text-accent-400 font-medium">Lecture en cours...</span>
+                </div>
+              )}
             </div>
           </div>
         )}
