@@ -449,8 +449,30 @@ function ListeningQuestion({
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [speaking, setSpeaking] = useState(false)
+  const [voicesReady, setVoicesReady] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const animRef = useRef<number>(0)
+  const frenchVoiceRef = useRef<SpeechSynthesisVoice | null>(null)
+
+  // Preload French voices on mount
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices()
+      if (voices.length > 0) {
+        frenchVoiceRef.current = 
+          voices.find(v => v.name.includes('Google') && v.lang.startsWith('fr')) ||
+          voices.find(v => v.name.includes('Microsoft') && v.lang.startsWith('fr')) ||
+          voices.find(v => v.name.includes('Amélie') || v.name.includes('Thomas') || v.name.includes('Hortense')) ||
+          voices.find(v => v.lang.startsWith('fr-FR')) ||
+          voices.find(v => v.lang.startsWith('fr')) ||
+          null
+        setVoicesReady(true)
+      }
+    }
+    loadVoices()
+    window.speechSynthesis.onvoiceschanged = loadVoices
+    return () => { window.speechSynthesis.onvoiceschanged = null }
+  }, [])
 
   const hasAudio = !!question.audio_url
 
@@ -466,6 +488,12 @@ function ListeningQuestion({
     const utterance = new SpeechSynthesisUtterance(transcriptText)
     utterance.lang = 'fr-FR'
     utterance.rate = 0.9
+    utterance.pitch = 1.0
+    
+    if (frenchVoiceRef.current) {
+      utterance.voice = frenchVoiceRef.current
+    }
+    
     utterance.onend = () => setSpeaking(false)
     utterance.onerror = () => setSpeaking(false)
     setSpeaking(true)
