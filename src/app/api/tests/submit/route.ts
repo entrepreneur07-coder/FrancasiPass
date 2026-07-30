@@ -7,11 +7,9 @@ import { transcribeAudioBuffer } from '@/lib/deepgram'
 export async function POST(request: Request) {
   const { test_id, answers } = await request.json()
   const supabase = await createClient()
+  
+  // Get user if authenticated (optional — works for both logged-in and anonymous users)
   const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
 
   // 0. Get test metadata
   const { data: test } = await supabase
@@ -24,11 +22,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Test not found' }, { status: 404 })
   }
 
-  // 1. Create a test attempt
+  // 1. Create a test attempt (works for both authenticated and anonymous users)
   const { data: attempt, error: attemptError } = await supabase
     .from('test_attempts')
     .insert({
-      user_id: user.id,
+      user_id: user?.id || null,
       test_id,
       started_at: new Date().toISOString(),
     })
