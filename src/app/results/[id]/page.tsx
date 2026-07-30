@@ -56,13 +56,14 @@ export default function ResultsPage() {
             }))
           })
           setLoading(false)
-          // Still fetch from DB to get AI feedback if it was updated
+          return // localStorage data is sufficient — don't overwrite with DB
         } catch (e) {
           console.error("Error parsing cache", e)
         }
       }
 
-      setLoading(cached ? false : true)
+      // Fallback: fetch from DB if no localStorage data
+      setLoading(true)
       try {
         // 1. Fetch attempt
         const { data: attempt, error: attemptError } = await supabase
@@ -105,7 +106,7 @@ export default function ResultsPage() {
           return {
             question_id: q.id,
             question: q.question_text || "No question text",
-            user_answer: userAnswer?.selected_answer || "No answer",
+            user_answer: userAnswer?.user_answer || "No answer",
             correct_answer: q.correct_answer,
             is_correct: userAnswer?.is_correct ?? false,
             ai_feedback: userAnswer?.ai_feedback
@@ -116,7 +117,7 @@ export default function ResultsPage() {
           attempt_id: attemptId,
           score: attempt.score || 0,
           max_score: attempt.max_score || 0,
-          clb: attempt.clb_equivalent || 0,
+          clb: attempt.clb_level || 0,
           module: test.module,
           title: test.title,
           answers: combinedAnswers
