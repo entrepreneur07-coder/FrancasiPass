@@ -1,13 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Badge, Button, Card, CardContent } from "@/components/ui"
+import { motion, AnimatePresence } from "framer-motion"
+import { Badge, Button, Card, CardContent, TestCardSkeleton } from "@/components/ui"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 type Filter = "all" | "reading" | "listening" | "writing" | "speaking"
 
-// Transform API test data to display format
 interface DisplayTest {
   id: string
   name: string
@@ -16,6 +16,7 @@ interface DisplayTest {
   sections: string[]
   duration: string
   difficulty: string
+  difficultyRaw: string
   questions: number
   tasks: number
   completed: number
@@ -38,6 +39,15 @@ function formatDifficulty(difficulty: string): string {
     advanced: "B2–C1",
   }
   return map[difficulty] || difficulty
+}
+
+function getDifficultyBadgeVariant(difficulty: string) {
+  switch (difficulty) {
+    case "beginner": return "success" as const
+    case "intermediate": return "warning" as const
+    case "advanced": return "error" as const
+    default: return "outline" as const
+  }
 }
 
 function formatExam(examType: string): string {
@@ -69,7 +79,6 @@ export default function TestsPage() {
       setLoading(true)
       setError(null)
       try {
-        // Fetch only TEF tests as specified by the owner
         const res = await fetch("/api/tests?type=tef")
         if (!res.ok) throw new Error("Failed to load tests")
         const data = await res.json()
@@ -82,6 +91,7 @@ export default function TestsPage() {
           sections: getSectionsForModule(t.module),
           duration: formatDuration(t.duration_minutes),
           difficulty: formatDifficulty(t.difficulty),
+          difficultyRaw: t.difficulty || "beginner",
           questions: t.question_count || 0,
           tasks: ["writing", "speaking"].includes(t.module) ? (t.question_count || 3) : 0,
           completed: Math.floor(Math.random() * 2000) + 500,
@@ -107,6 +117,14 @@ export default function TestsPage() {
 
   const fullCount = tests.filter(t => t.type === "Full").length
   const sectionCount = tests.filter(t => t.type === "Section").length
+
+  const filterTabs: { id: Filter; label: string; icon: string }[] = [
+    { id: "all", label: "All TEF Tests", icon: "📋" },
+    { id: "listening", label: "Listening", icon: "🎧" },
+    { id: "reading", label: "Reading", icon: "📖" },
+    { id: "writing", label: "Writing", icon: "✍️" },
+    { id: "speaking", label: "Speaking", icon: "🎙️" },
+  ]
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-surface-dark">
@@ -143,32 +161,28 @@ export default function TestsPage() {
 
           {/* Filters */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {([
-              { id: "all", label: "All TEF Tests" },
-              { id: "listening", label: "Listening" },
-              { id: "reading", label: "Reading" },
-              { id: "writing", label: "Writing" },
-              { id: "speaking", label: "Speaking" },
-            ] as { id: Filter; label: string }[]).map((f) => (
+            {filterTabs.map((f) => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   filter === f.id
-                    ? "bg-primary-600 text-white"
+                    ? "bg-primary-600 text-white shadow-soft"
                     : "bg-white dark:bg-surface-dark-muted text-gray-600 dark:text-gray-400 border border-surface-border dark:border-surface-dark-border hover:bg-gray-50 dark:hover:bg-surface-dark-border"
                 }`}
               >
+                <span>{f.icon}</span>
                 {f.label}
               </button>
             ))}
           </div>
 
-          {/* Loading State */}
+          {/* Loading Skeleton Grid */}
           {loading && (
-            <div className="flex flex-col items-center justify-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4" />
-              <p className="text-sm text-gray-500 dark:text-gray-400">Loading your practice tests...</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <TestCardSkeleton key={i} />
+              ))}
             </div>
           )}
 
@@ -197,51 +211,79 @@ export default function TestsPage() {
                 </svg>
               </div>
               <h3 className="text-heading font-bold text-gray-900 dark:text-white mb-2">No tests found</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">No {filter !== "all" ? filter : ""} tests available yet.</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                No {filter !== "all" ? filter : ""} tests available yet.
+              </p>
             </div>
           )}
 
           {/* Tests Grid */}
-          {!loading && !error && (
-            <div className="grid md:grid-cols-2 gap-4">
-              {filteredTests.map((test, i) => (
-                <motion.div
-                  key={test.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Card hover className="h-full">
-                    <CardContent className="p-5">
-                      <div className="flex items-start justify-between mb-3">
-                        <Badge variant="accent" size="sm">
-                          {test.exam}
-                        </Badge>
-                        <Badge variant="outline" size="sm">{test.difficulty}</Badge>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{test.name}</h3>
-                      <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-4">
-                        <span>⏱ {test.duration}</span>
-                        <span>📝 {test.questions || test.tasks || "—"} items</span>
-                        <span>⭐ {test.rating}</span>
-                        <span>👥 {test.completed.toLocaleString()} completed</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {test.sections.map((s) => (
-                          <span key={s} className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-surface-dark-muted text-xs text-gray-600 dark:text-gray-400">
-                            {s}
+          <AnimatePresence mode="wait">
+            {!loading && !error && (
+              <div className="grid md:grid-cols-2 gap-4">
+                {filteredTests.map((test, i) => (
+                  <motion.div
+                    key={test.id}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <Card hover className="h-full">
+                      <CardContent className="p-5">
+                        <div className="flex items-start justify-between mb-3">
+                          <Badge variant="accent" size="sm">
+                            {test.exam}
+                          </Badge>
+                          <Badge variant={getDifficultyBadgeVariant(test.difficultyRaw)} size="sm">
+                            {test.difficulty}
+                          </Badge>
+                        </div>
+                        <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{test.name}</h3>
+
+                        {/* Question count — prominent badge */}
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-50 dark:bg-primary-950/30 rounded-lg mb-3">
+                          <span className="text-sm font-semibold text-primary-700 dark:text-primary-300">
+                            {test.questions || test.tasks}
                           </span>
-                        ))}
-                      </div>
-                      <Button href={`/tests/${test.id}`} variant="primary" fullWidth size="md">
-                        {test.type === "Full" ? "Start Full Exam" : "Start Practice"}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          )}
+                          <span className="text-xs text-primary-500 dark:text-primary-400">
+                            {(test.questions || test.tasks) === 1 ? "question" : "questions"}
+                          </span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-4">
+                          <span className="inline-flex items-center gap-1">
+                            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                            </svg>
+                            {test.duration}
+                          </span>
+                          <span className="inline-flex items-center gap-1">⭐ {test.rating}</span>
+                          <span>👥 {test.completed.toLocaleString()} completed</span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {test.sections.map((s) => (
+                            <span
+                              key={s}
+                              className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-surface-dark-muted text-xs text-gray-600 dark:text-gray-400"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+
+                        <Button href={`/tests/${test.id}`} variant="primary" fullWidth size="md">
+                          {test.type === "Full" ? "Start Full Exam" : "Start Practice"}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </main>
     </div>

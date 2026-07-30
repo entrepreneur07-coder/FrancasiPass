@@ -19,13 +19,7 @@ interface Test {
   exam_type: string;
   module: string;
   duration_minutes: number;
-  passageContent?: string; // Reading passage content for TEF/TCF reading tests
-}
-
-// Reading passages for TCF/TEF reading comprehension tests
-const readingPassages: Record<string, string> = {
-  // We can add some default ones or fetch from the test description/meta if needed
-  // For now, we'll use a generic one if not found
+  passageContent?: string;
 }
 
 export default function TestTakingPage() {
@@ -43,6 +37,7 @@ export default function TestTakingPage() {
   const [submitting, setSubmitting] = useState(false)
   const [isListening, setIsListening] = useState(false)
   const [fetchError, setFetchError] = useState<string | null>(null)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
 
@@ -58,7 +53,6 @@ export default function TestTakingPage() {
         }
         const data = await response.json()
         
-        // Parse options if they are stored as JSON string
         const formattedQuestions = data.questions.map((q: any) => ({
           ...q,
           options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options
@@ -103,16 +97,17 @@ export default function TestTakingPage() {
   }
 
   const totalQuestions = questions.length
-  const progress = totalQuestions > 0 ? ((currentQ + 1) / totalQuestions) * 100 : 0
   const answeredCount = Object.keys(answers).length
 
-  const handleOptionSelect = (questionId: string, option: string) => {
+  const handleOptionSelect = useCallback((questionId: string, option: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: option }))
-    // Auto-advance after a brief delay for MCQs
+    // Smoother auto-advance with a brief pause to show selection feedback
     if (currentQ < totalQuestions - 1) {
-      setTimeout(() => setCurrentQ((p) => p + 1), 400)
+      setTimeout(() => {
+        setCurrentQ((p) => Math.min(p + 1, totalQuestions - 1))
+      }, 600)
     }
-  }
+  }, [currentQ, totalQuestions])
 
   const handleTextChange = (questionId: string, text: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: text }))
@@ -176,7 +171,6 @@ export default function TestTakingPage() {
       const data = await response.json()
       setSubmitted(true)
       
-      // Save results to localStorage for instant access on results page
       localStorage.setItem(`test_result_${data.attempt_id}`, JSON.stringify({
         test_id: testId,
         questions: questions,
@@ -195,12 +189,15 @@ export default function TestTakingPage() {
     } finally {
       setSubmitting(false)
     }
-  }, [router, testId, answers, submitting, test])
+  }, [router, testId, answers, submitting, test, questions])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-surface-dark">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Loading test...</p>
+        </div>
       </div>
     )
   }
@@ -236,7 +233,6 @@ export default function TestTakingPage() {
     )
   }
 
-  // If already submitted, don't render the test
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-surface-dark">
@@ -261,21 +257,31 @@ export default function TestTakingPage() {
       <header className="glass border-b border-surface-border dark:border-surface-dark-border sticky top-0 z-50">
         <div className="flex items-center justify-between h-14 px-4 sm:px-6">
           <div className="flex items-center gap-3">
+            {/* Mobile hamburger for question nav */}
+            <button
+              onClick={() => setMobileNavOpen(true)}
+              className="md:hidden h-8 w-8 rounded-lg bg-gray-100 dark:bg-surface-dark-muted flex items-center justify-center text-gray-600 dark:text-gray-400"
+              aria-label="Open question navigator"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
             <span className="font-semibold text-sm text-gray-900 dark:text-white truncate max-w-[200px]">{test.title}</span>
             <Badge variant="outline" size="sm" className="hidden sm:inline-flex">{test.module}</Badge>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             {/* Progress indicator */}
             <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
               <div className="h-1.5 w-24 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full transition-all" style={{ width: `${(answeredCount / totalQuestions) * 100}%` }} />
+                <div className="h-full bg-primary-500 rounded-full transition-all duration-300" style={{ width: `${(answeredCount / totalQuestions) * 100}%` }} />
               </div>
               <span>{answeredCount}/{totalQuestions}</span>
             </div>
 
             {/* Timer */}
-            <div className={`flex items-center gap-1.5 font-mono text-sm font-semibold px-3 py-1 rounded-lg ${
+            <div className={`flex items-center gap-1.5 font-mono text-sm font-semibold px-3 py-1 rounded-lg transition-colors duration-300 ${
               timeLeft < 300 ? "bg-error-light text-error dark:bg-error-dark/30 dark:text-error-light animate-pulse-soft" : "bg-gray-100 dark:bg-surface-dark-muted text-gray-700 dark:text-gray-300"
             }`}>
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -298,8 +304,68 @@ export default function TestTakingPage() {
         </div>
       </header>
 
+      {/* Mobile Question Nav Drawer */}
+      <AnimatePresence>
+        {mobileNavOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="md:hidden fixed inset-0 bg-black/40 z-[60]"
+              onClick={() => setMobileNavOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="md:hidden fixed left-0 top-0 bottom-0 w-64 bg-white dark:bg-surface-dark-muted z-[70] shadow-elevated overflow-y-auto"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-surface-border dark:border-surface-dark-border">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Questions</p>
+                <button
+                  onClick={() => setMobileNavOpen(false)}
+                  className="h-7 w-7 rounded-lg bg-gray-100 dark:bg-surface-dark-muted flex items-center justify-center"
+                  aria-label="Close"
+                >
+                  <svg className="h-3.5 w-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-3">
+                <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-3">
+                  {answeredCount}/{totalQuestions} answered
+                </p>
+                <div className="grid grid-cols-5 gap-2">
+                  {questions.map((q, idx) => (
+                    <button
+                      key={q.id}
+                      onClick={() => {
+                        setCurrentQ(idx)
+                        setMobileNavOpen(false)
+                      }}
+                      className={`h-10 w-full rounded-lg text-sm font-medium transition-all ${
+                        idx === currentQ
+                          ? "bg-primary-600 text-white shadow-soft ring-2 ring-primary-300"
+                          : answers[q.id]
+                          ? "bg-primary-100 text-primary-700 dark:bg-primary-900/40 dark:text-primary-300"
+                          : "bg-gray-50 dark:bg-surface-dark text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-surface-dark-border"
+                      }`}
+                    >
+                      {idx + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       <div className="flex flex-1">
-        {/* Question Navigation Sidebar */}
+        {/* Desktop Question Navigation Sidebar */}
         <aside className="hidden md:flex flex-col w-20 lg:w-24 bg-white dark:bg-surface-dark-muted border-r border-surface-border dark:border-surface-dark-border p-3 overflow-y-auto">
           <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-3 text-center">Questions</p>
           <div className="flex flex-col gap-1.5">
@@ -319,8 +385,6 @@ export default function TestTakingPage() {
               </button>
             ))}
           </div>
-
-          {/* Mini progress */}
           <div className="mt-auto pt-3 border-t border-surface-border dark:border-surface-dark-border">
             <div className="text-[10px] text-center text-gray-400">
               <div className="font-medium">{answeredCount}/{totalQuestions}</div>
@@ -337,19 +401,23 @@ export default function TestTakingPage() {
               <button
                 onClick={() => setCurrentQ(Math.max(0, currentQ - 1))}
                 disabled={currentQ === 0}
-                className="h-8 w-8 rounded-lg bg-gray-100 dark:bg-surface-dark-muted flex items-center justify-center disabled:opacity-30"
+                className="h-10 w-10 rounded-xl bg-white dark:bg-surface-dark-muted border border-surface-border dark:border-surface-dark-border flex items-center justify-center disabled:opacity-30 active:scale-95 transition-transform"
               >
-                ←
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
               </button>
               <div className="flex-1 h-1.5 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full transition-all" style={{ width: `${progress}%` }} />
+                <div className="h-full bg-primary-500 rounded-full transition-all duration-300" style={{ width: `${((currentQ + 1) / totalQuestions) * 100}%` }} />
               </div>
               <button
                 onClick={() => setCurrentQ(Math.min(totalQuestions - 1, currentQ + 1))}
                 disabled={currentQ === totalQuestions - 1}
-                className="h-8 w-8 rounded-lg bg-gray-100 dark:bg-surface-dark-muted flex items-center justify-center disabled:opacity-30"
+                className="h-10 w-10 rounded-xl bg-white dark:bg-surface-dark-muted border border-surface-border dark:border-surface-dark-border flex items-center justify-center disabled:opacity-30 active:scale-95 transition-transform"
               >
-                →
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
               </button>
             </div>
 
@@ -361,10 +429,10 @@ export default function TestTakingPage() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentQ}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
               >
                 {test.module === "listening" && (
                   <ListeningQuestion
@@ -449,12 +517,9 @@ function ListeningQuestion({
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [speaking, setSpeaking] = useState(false)
-  const [voicesReady, setVoicesReady] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
-  const animRef = useRef<number>(0)
   const frenchVoiceRef = useRef<SpeechSynthesisVoice | null>(null)
 
-  // Preload French voices on mount
   useEffect(() => {
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices()
@@ -466,7 +531,6 @@ function ListeningQuestion({
           voices.find(v => v.lang.startsWith('fr-FR')) ||
           voices.find(v => v.lang.startsWith('fr')) ||
           null
-        setVoicesReady(true)
       }
     }
     loadVoices()
@@ -478,22 +542,18 @@ function ListeningQuestion({
 
   const handleTTS = () => {
     if (!transcriptText) return
-
     if (speaking) {
       window.speechSynthesis.cancel()
       setSpeaking(false)
       return
     }
-
     const utterance = new SpeechSynthesisUtterance(transcriptText)
     utterance.lang = 'fr-FR'
     utterance.rate = 0.9
     utterance.pitch = 1.0
-    
     if (frenchVoiceRef.current) {
       utterance.voice = frenchVoiceRef.current
     }
-    
     utterance.onend = () => setSpeaking(false)
     utterance.onerror = () => setSpeaking(false)
     setSpeaking(true)
@@ -502,20 +562,16 @@ function ListeningQuestion({
 
   const handlePlay = () => {
     if (!hasAudio) return
-
     if (playing) {
       audioRef.current?.pause()
       setPlaying(false)
-      cancelAnimationFrame(animRef.current)
       return
     }
-
     if (!audioRef.current) {
       audioRef.current = new Audio(question.audio_url)
       audioRef.current.onended = () => {
         setPlaying(false)
         setProgress(0)
-        cancelAnimationFrame(animRef.current)
       }
       audioRef.current.ontimeupdate = () => {
         if (audioRef.current) {
@@ -533,14 +589,11 @@ function ListeningQuestion({
       audioRef.current = null
       setPlaying(false)
       setProgress(0)
-      cancelAnimationFrame(animRef.current)
     }
     window.speechSynthesis.cancel()
     setSpeaking(false)
   }, [question.id])
 
-  // Extract the script/transcript text (everything before "Question :")
-  // and the question text (everything after "Question :")
   const qText = question.question_text || ""
   const hasQuestionSplit = qText.includes("Question :") || qText.includes("Question:")
   const transcriptText = hasQuestionSplit ? qText.split(/Question\s*:/i)[0].trim() : qText
@@ -548,15 +601,15 @@ function ListeningQuestion({
 
   return (
     <Card glass>
-      <CardContent className="p-6">
-        {/* Audio Player - only show when audio_url exists */}
+      <CardContent className="p-4 sm:p-6">
         {hasAudio ? (
           <div className="mb-6">
-            <div className="p-6 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
+            <div className="p-4 sm:p-6 bg-primary-50 dark:bg-primary-950/40 rounded-xl border border-primary-100 dark:border-primary-900">
               <div className="flex items-center gap-4 mb-4">
                 <button
                   onClick={handlePlay}
-                  className="h-14 w-14 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0 shadow-lg shadow-primary-500/30"
+                  className="h-14 w-14 rounded-full bg-primary-600 flex items-center justify-center text-white hover:bg-primary-700 transition-colors shrink-0 shadow-lg shadow-primary-500/30 active:scale-95"
+                  aria-label={playing ? "Pause" : "Play audio"}
                 >
                   {playing ? (
                     <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -579,7 +632,6 @@ function ListeningQuestion({
                 </div>
               </div>
 
-              {/* Waveform visualization */}
               <div className="flex items-end gap-0.5 h-12 mb-3">
                 {Array.from({ length: 40 }).map((_, i) => (
                   <div
@@ -600,7 +652,6 @@ function ListeningQuestion({
                 ))}
               </div>
 
-              {/* Progress bar */}
               <div className="h-1 bg-primary-200 dark:bg-primary-800 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-primary-500 rounded-full transition-all duration-200"
@@ -610,9 +661,8 @@ function ListeningQuestion({
             </div>
           </div>
         ) : (
-          /* Transcript with TTS when no audio URL */
           <div className="mb-6">
-            <div className="p-5 bg-gradient-to-br from-accent-50 to-accent-100/50 dark:from-accent-950/30 dark:to-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800/40">
+            <div className="p-4 sm:p-5 bg-gradient-to-br from-accent-50 to-accent-100/50 dark:from-accent-950/30 dark:to-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800/40">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <Badge variant="accent" size="sm">🎧 Écoutez</Badge>
@@ -620,7 +670,7 @@ function ListeningQuestion({
                 </div>
                 <button
                   onClick={handleTTS}
-                  className={`h-10 w-10 rounded-full flex items-center justify-center transition-all ${
+                  className={`h-10 w-10 rounded-full flex items-center justify-center transition-all active:scale-95 ${
                     speaking
                       ? "bg-error-500 text-white shadow-lg shadow-error-500/30"
                       : "bg-accent-600 text-white hover:bg-accent-700 shadow-lg shadow-accent-500/30"
@@ -655,30 +705,28 @@ function ListeningQuestion({
           </div>
         )}
 
-        {/* Question */}
         {questionOnly && (
           <h3 className="text-body font-medium text-gray-900 dark:text-white mb-4">
             {questionOnly}
           </h3>
         )}
 
-        {/* Options */}
         <div className="space-y-2.5">
           {question.options?.map((opt) => (
             <button
               key={opt}
               onClick={() => onSelect(question.id, opt)}
-              className={`w-full text-left p-3.5 rounded-xl border text-sm transition-all ${
+              className={`w-full text-left p-3.5 sm:p-4 rounded-xl border text-sm transition-all active:scale-[0.99] ${
                 selected === opt
                   ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 font-medium"
                   : "border-surface-border dark:border-surface-dark-border text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-surface-dark-muted"
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className={`mt-0.5 h-4 w-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                <div className={`mt-0.5 h-5 w-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
                   selected === opt ? "border-primary-500" : "border-gray-300 dark:border-gray-600"
                 }`}>
-                  {selected === opt && <div className="h-2 w-2 rounded-full bg-primary-500" />}
+                  {selected === opt && <div className="h-2.5 w-2.5 rounded-full bg-primary-500" />}
                 </div>
                 <span>{opt}</span>
               </div>
@@ -703,8 +751,6 @@ function ReadingQuestion({
   passageContent?: string
   currentQuestionIndex?: number
 }) {
-  // Extract passage from question_text if not provided separately
-  // Format: "Le texte...\n\nQuestion : ..."
   const qText = question.question_text
   const hasEmbeddedPassage = qText.includes("Question :") || qText.includes("Question:")
   const passage = passageContent || (hasEmbeddedPassage ? qText.split(/Question\s*:/i)[0].trim() : "")
@@ -712,14 +758,13 @@ function ReadingQuestion({
 
   return (
     <div className="grid lg:grid-cols-2 gap-6">
-      {/* Passage Panel — shown at the top or side depending on screen size */}
       {passage && (
         <div className="lg:order-1 max-h-[60vh] lg:max-h-[70vh] overflow-y-auto">
           <Card glass>
-            <CardContent className="p-5">
+            <CardContent className="p-4 sm:p-5">
               <div className="flex items-center gap-2 mb-3">
                 <Badge variant="accent" size="sm">📖 Texte</Badge>
-                <span className="text-xs text-gray-400">Lisez attentivement le texte ci-dessous</span>
+                <span className="text-xs text-gray-400">Lisez attentivement</span>
               </div>
               <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-serif">
                 {passage}
@@ -728,10 +773,9 @@ function ReadingQuestion({
           </Card>
         </div>
       )}
-      {/* Question Panel */}
       <div className={passage ? "lg:order-2" : ""}>
         <Card glass>
-          <CardContent className="p-5">
+          <CardContent className="p-4 sm:p-5">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="primary" size="sm">❓ Question {currentQuestionIndex !== undefined ? currentQuestionIndex + 1 : ""}</Badge>
             </div>
@@ -741,17 +785,17 @@ function ReadingQuestion({
                 <button
                   key={opt}
                   onClick={() => onSelect(question.id, opt)}
-                  className={`w-full text-left p-3 rounded-xl border text-sm transition-all ${
+                  className={`w-full text-left p-3 sm:p-3.5 rounded-xl border text-sm transition-all active:scale-[0.99] ${
                     selected === opt
                       ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 font-medium"
                       : "border-surface-border dark:border-surface-dark-border text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-surface-dark-muted"
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`mt-0.5 h-4 w-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                    <div className={`mt-0.5 h-5 w-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
                       selected === opt ? "border-primary-500" : "border-gray-300 dark:border-gray-600"
                     }`}>
-                      {selected === opt && <div className="h-2 w-2 rounded-full bg-primary-500" />}
+                      {selected === opt && <div className="h-2.5 w-2.5 rounded-full bg-primary-500" />}
                     </div>
                     <span className="text-sm">{opt}</span>
                   </div>
@@ -775,26 +819,21 @@ function WritingQuestion({
   onChange: (id: string, text: string) => void
 }) {
   const wordCount = value.trim() ? value.trim().split(/\s+/).length : 0
-  // Extract the section and prompt text from question_text
   const parts = question.question_text.split(/\n\n/)
   const sectionTitle = parts[0]?.replace(/^###\s*/, "") || "Section"
   const promptText = parts.slice(1).join("\n\n") || question.question_text
 
-  // Determine word count target from the prompt
   const wordMatch = promptText.match(/(\d+)\s*mots/)
   const wordTarget = wordMatch ? parseInt(wordMatch[1]) : (promptText.toLowerCase().includes("section a") ? 80 : 200)
-  const isSectionA = promptText.toLowerCase().includes("section a") || wordTarget <= 100
 
   return (
     <Card glass>
-      <CardContent className="p-6">
-        {/* Section header */}
-        <div className="flex items-center justify-between mb-3">
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
           <Badge variant="accent" size="sm">{sectionTitle}</Badge>
           <Badge variant="outline" size="sm">{wordCount} / {wordTarget} mots</Badge>
         </div>
 
-        {/* Prompt */}
         <div className="mb-4 p-4 bg-primary-50 dark:bg-primary-950/30 rounded-xl border border-primary-100 dark:border-primary-900">
           <p className="text-sm font-medium text-primary-800 dark:text-primary-200 mb-1">📝 Sujet</p>
           <p className="text-sm text-primary-700 dark:text-primary-300 leading-relaxed">{promptText}</p>
@@ -808,12 +847,12 @@ function WritingQuestion({
           className="w-full p-4 rounded-xl border border-surface-border dark:border-surface-dark-border bg-white dark:bg-surface-dark-muted text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm leading-relaxed"
         />
 
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between mt-3 flex-wrap gap-2">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             Minimum {wordTarget} mots requis
           </p>
           <div className="flex items-center gap-2">
-            <div className="h-1.5 w-40 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
+            <div className="h-1.5 w-32 sm:w-40 bg-gray-200 dark:bg-surface-dark-border rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all ${
                   wordCount >= wordTarget ? "bg-success" : wordCount >= wordTarget * 0.5 ? "bg-warning" : "bg-gray-300 dark:bg-gray-600"
@@ -896,13 +935,12 @@ function SpeakingQuestion({
     return `${m}:${s.toString().padStart(2, "0")}`
   }
 
-  // Extract section title from question_text
   const parts = question.question_text.split(/\n\n/)
   const sectionTitle = parts[0]?.replace(/^###\s*/, "") || ""
 
   return (
     <Card glass>
-      <CardContent className="p-6 text-center">
+      <CardContent className="p-4 sm:p-6 text-center">
         <div className="mb-6">
           <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 flex items-center justify-center mx-auto mb-4 relative">
             <svg className="h-10 w-10 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -925,7 +963,6 @@ function SpeakingQuestion({
           </h3>
         </div>
 
-        {/* Timer Display */}
         {phase === "preparing" && (
           <div className="mb-6">
             <div className="flex items-center justify-center gap-3 mb-2">
@@ -951,7 +988,6 @@ function SpeakingQuestion({
           </div>
         )}
 
-        {/* Controls */}
         <div className="flex flex-col items-center gap-4">
           {phase === "ready" && (
             <Button variant="primary" size="lg" onClick={startPrep}>

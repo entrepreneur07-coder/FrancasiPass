@@ -300,13 +300,20 @@ export default function ResultsPage() {
                         </div>
                       )}
                       <div className="flex-1">
-                        <div className="text-sm text-gray-900 dark:text-white mb-2 font-medium" 
-                          dangerouslySetInnerHTML={{ 
-                            __html: (ans.question.includes("Question :") || ans.question.includes("Question:")
-                              ? ans.question.split(/Question\s*:/i).slice(1).join("Question :").trim()
-                              : ans.question).replace(/\n/g, '<br/>') 
-                          }} 
-                        />
+                        <div className="text-sm text-gray-900 dark:text-white mb-2 font-medium whitespace-pre-wrap"
+                        >
+                          {(() => {
+                            const questionText = ans.question || "";
+                            const splitRegex = /\n\s*Question\s*:\s*/i;
+                            const hasSplit = splitRegex.test(questionText) || /^Question\s*:\s*/i.test(questionText);
+                            if (!hasSplit && !questionText.includes("Question :") && !questionText.includes("Question:")) return questionText;
+                            if (hasSplit) {
+                              const parts = questionText.split(splitRegex);
+                              return parts.slice(1).join("\nQuestion : ").trim();
+                            }
+                            return questionText.split(/Question\s*:/i).slice(1).join("Question :").trim();
+                          })()}
+                        </div>
                         
                         <div className="flex flex-col gap-2">
                           <div className="p-3 bg-gray-50 dark:bg-surface-dark rounded-lg">

@@ -19,50 +19,56 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 400 })
   }
 
-  switch (event.type) {
-    case 'checkout.session.completed': {
-      const session = event.data.object as Stripe.Checkout.Session
-      const subscriptionId = session.subscription as string
-      const userId = session.metadata?.userId
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session
+        const subscriptionId = session.subscription as string
+        const userId = session.metadata?.userId
 
-      if (userId && subscriptionId) {
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
-          expand: ['items.data.price'],
-        }) as Stripe.Subscription
+        if (userId && subscriptionId) {
+          const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
+            expand: ['items.data.price'],
+          }) as Stripe.Subscription
+          
+          await supabaseAdmin.from('subscriptions').upsert({
+            id: subscription.id,
+            user_id: userId,
+            status: subscription.status,
+            price_id: subscription.items.data[0].price.id,
+            current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
+            current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
+            cancel_at_period_end: subscription.cancel_at_period_end,
+          })
+
+          await supabaseAdmin.from('profiles').update({
+            stripe_customer_id: session.customer as string
+          }).eq('id', userId)
+        }
+        break
+      }
+      case 'customer.subscription.updated':
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object as Stripe.Subscription
         
-        await supabaseAdmin.from('subscriptions').upsert({
-          id: subscription.id,
-          user_id: userId,
+        await supabaseAdmin.from('subscriptions').update({
           status: subscription.status,
           price_id: subscription.items.data[0].price.id,
           current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
           current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
           cancel_at_period_end: subscription.cancel_at_period_end,
-        })
-
-        await supabaseAdmin.from('profiles').update({
-          stripe_customer_id: session.customer as string
-        }).eq('id', userId)
+          ended_at: subscription.ended_at ? new Date((subscription as any).ended_at * 1000).toISOString() : null,
+        }).eq('id', subscription.id)
+        break
       }
-      break
+      default:
+        console.log(`Unhandled event type ${event.type}`)
     }
-    case 'customer.subscription.updated':
-    case 'customer.subscription.deleted': {
-      const subscription = event.data.object as Stripe.Subscription
-      
-      await supabaseAdmin.from('subscriptions').update({
-        status: subscription.status,
-        price_id: subscription.items.data[0].price.id,
-        current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
-        current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
-        cancel_at_period_end: subscription.cancel_at_period_end,
-        ended_at: subscription.ended_at ? new Date((subscription as any).ended_at * 1000).toISOString() : null,
-      }).eq('id', subscription.id)
-      break
-    }
-    default:
-      console.log(`Unhandled event type ${event.type}`)
+  } catch (err: any) {
+    console.error('Stripe Webhook Processing Error:', err)
+    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 })
   }
 
   return NextResponse.json({ received: true })
 }
+

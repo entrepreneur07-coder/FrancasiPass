@@ -6,6 +6,7 @@ import { ClientLayout } from "./client-layout"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://francaispass.vercel.app"),
   title: {
     default: "FrancaisPass — Your Key to Canadian Immigration Success",
     template: "%s | FrancaisPass",
@@ -24,6 +25,10 @@ export const metadata: Metadata = {
     "French immigration Canada",
     "FrancaisPass",
   ],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_CA",
